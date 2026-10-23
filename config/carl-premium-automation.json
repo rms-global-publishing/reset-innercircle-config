@@ -10,10 +10,24 @@
     "canonical_invite": "https://discord.gg/DWyT4vskVW"
   },
   "premium": {
-    "founder_report": "Renewed previously; live audit on 2026-10-15 still shows no Premium entitlement on the authenticated Carl account.",
+    "founder_report": "Older Carl authenticated audit on 2026-10-15 showed Premium inactive. Later that day, Discord issued a successful Carlbot-Premium one-server payment receipt. Server assignment/activation after the receipt has NOT been verified; support inquiry sent 2026-10-23. Do not repurchase.",
     "latest_visual_evidence": "Authenticated Carl botsettings says 'Carlbot Premium — Not active, get it on Premium'; Carl Premium account page says 'It looks like you don’t have premium'. Premium-only panels expose historical records but disable new Premium writes.",
-    "activation_gate": "Do not repurchase. Reconcile the already-paid Premium entitlement/account first. Until Carl reports Premium active for guild 1429398855681573038, keep Premium-only modules fail-closed and continue with standard/RMS-owned automation.",
-    "source_of_truth": "Carl dashboard + this manifest after live verification"
+    "activation_gate": "Do not repurchase, mark premium ACTIVE, or enable Premium-only modules until authenticated post-payment Carl/Discord readback confirms the intended guild entitlement and the applicable features.",
+    "source_of_truth": "Carl dashboard + this manifest after live verification",
+    "payment_reconciliation": {
+      "evidence_date": "2026-10-15T22:29:33-04:00",
+      "evidence_type": "DISCORD_PAYMENT_SUCCEEDED_RECEIPT_FOR_CARLBOT_PREMIUM_ONE_SERVER",
+      "amount_and_billing_sensitive_detail": "NOT_STORED_IN_PUBLIC_MANIFEST",
+      "dashboard_last_direct_check": "2026-10-15_BOTH_CARL_PREMIUM_SURFACES_REPORTED_INACTIVE_PRIOR_TO_RECEIPT",
+      "post_purchase_premium_entitlement": "UNVERIFIED",
+      "intended_guild_id": "1429398855681573038",
+      "support_inquiry": "SENT_2026-10-23",
+      "post_purchase_authenticated_recheck": "NOT_AVAILABLE_REMOTE_DESKTOP_OFFLINE",
+      "independent_provider_activation_certified": false,
+      "no_repurchase": true,
+      "no_authority_or_paid_access_grants": true,
+      "next_evidence_gate": "Authenticated Carl dashboard and Discord user App Subscription assignment must confirm guild Premium activation before enabling premium-only workflows."
+    }
   },
   "operating_rules": [
     "Keep Discord usable if Carl-bot is offline.",
@@ -806,6 +820,8 @@
     "new_scheduler": false,
     "scope": "Community configuration and canonical alignment only; not an all-product runtime certification",
     "recognition_is_entitlement": false,
-    "recognition_is_mastery": false
+    "recognition_is_mastery": false,
+    "payment_reconciliation_status": "PAID_RECEIPT_CONFIRMED_GUILD_ENTITLEMENT_UNVERIFIED",
+    "support_inquiry_sent_at": "2026-10-23"
   }
 }
