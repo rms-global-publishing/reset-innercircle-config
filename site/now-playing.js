@@ -64,9 +64,9 @@
     if (!navShell || navShell.querySelector('.ecosystem-bridge')) return;
     const bridge = document.createElement('div');
     bridge.className = 'ecosystem-bridge';
-    bridge.setAttribute('aria-label', 'RMS ecosystem destinations');
+    bridge.setAttribute('aria-label', 'RMS GP ecosystem destinations');
     bridge.innerHTML = `
-      <span>RMS Ecosystem</span>
+      <span>RMS GP Ecosystem</span>
       <a class="track soundable" data-event="ecosystem_creatorhub_click" data-placement="reset_bridge" href="https://creators.rmsglobalpublishing.com/">CreatorHub</a>
       <a class="track soundable" data-event="ecosystem_global_publishing_click" data-placement="reset_bridge" href="https://rmsglobalpublishing.com/">Global Publishing</a>
       <a class="track soundable" data-event="ecosystem_academy_click" data-placement="reset_bridge" href="https://academy.rmsglobalpublishing.com/">Academy</a>

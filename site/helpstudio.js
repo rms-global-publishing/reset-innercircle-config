@@ -9,7 +9,7 @@
     try {
       if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
       await navigator.clipboard.writeText('/helpstudio');
-      status.textContent = 'Copied. In Discord, paste /helpstudio, select the RMS CreatorHub command, and press Enter.';
+      status.textContent = 'Copied. In Discord, paste /helpstudio, select the RMS GP CreatorHub command, and press Enter.';
     } catch {
       status.textContent = 'Copy manually: /helpstudio. Paste it in the Discord message box, not the browser address bar.';
     }
