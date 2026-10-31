@@ -17,7 +17,7 @@
     "Never promise a refund, license, entitlement, placement or service completion automatically.",
     "Never treat voluntary support as a membership purchase or charitable donation.",
     "Never send payment links except the lane-specific approved Stripe URL.",
-    "Never ingest private Discord messages into RMS Intelligence.",
+    "Never ingest private Discord messages into RMS GP Intelligence.",
     "Never provide substantive legal, tax, safety or rights advice automatically."
   ]
 }
