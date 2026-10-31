@@ -48,11 +48,11 @@
           <a class="track soundable" data-event="footer_services_click" data-placement="bridge_footer" href="/#services">Production Services →</a>
           <a class="track soundable" data-event="footer_support_click" data-placement="bridge_footer" href="/#support">Support Reset →</a>
         </nav>
-        <nav class="bridge-directory-column" aria-label="RMS ecosystem directory">
-          <span>RMS GLOBAL</span>
+        <nav class="bridge-directory-column" aria-label="RMS GP ecosystem directory">
+          <span>RMS GP ECOSYSTEM</span>
           <a class="track soundable" data-event="footer_rms_click" data-placement="bridge_footer" href="https://www.rmsglobalpublishing.com/" target="_blank" rel="noopener">RMS Global Publishing ↗</a>
           <a class="track soundable" data-event="footer_creator_portal_click" data-placement="bridge_footer" href="https://creators.rmsglobalpublishing.com/" target="_blank" rel="noopener">Creator Portal ↗</a>
-          <a class="track soundable" data-event="footer_academy_click" data-placement="bridge_footer" href="https://academy.rmsglobalpublishing.com/" target="_blank" rel="noopener">RMS Academy ↗</a>
+          <a class="track soundable" data-event="footer_academy_click" data-placement="bridge_footer" href="https://academy.rmsglobalpublishing.com/" target="_blank" rel="noopener">RMS GP Academy ↗</a>
           <a class="track soundable" data-event="footer_steadiora_click" data-placement="bridge_footer" href="https://steadiora.rmsglobalpublishing.com/" target="_blank" rel="noopener">Steadiora™ ↗</a>
         </nav>
       </div>
