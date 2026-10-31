@@ -25,7 +25,7 @@ jobs:
       - name: Verify requested assistance and signed interaction boundaries
         run: npm --prefix rms-discord-bridge run test:assistance
       - name: Run Reset contract regression
-        run: node --test tests/reset-contract.test.mjs tests/reset-booking-routing.test.mjs tests/reset-help-routing.test.mjs
+        run: node --test tests/reset-contract.test.mjs tests/reset-booking-routing.test.mjs tests/reset-help-routing.test.mjs tests/reset-company-brand.test.mjs
 
       - name: Verify public Help and 404 recovery at real desktop/mobile sizes
         env:
