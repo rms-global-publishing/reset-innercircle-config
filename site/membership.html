@@ -103,7 +103,7 @@
           </div>
         </div>
         <aside class="signal-card" aria-label="Membership system status">
-          <div class="signal-top"><span><i class="signal-dot"></i> IDENTITY-FIRST ACCESS</span><span>RMS / RESET</span></div>
+          <div class="signal-top"><span><i class="signal-dot"></i> IDENTITY-FIRST ACCESS</span><span>RMS GP / RESET</span></div>
           <strong>One identity. One membership. Clean access.</strong>
           <p>Your membership path begins privately inside Discord so paid access can be tied to the correct creator identity when checkout is enabled. No public payment-link guessing. No email-based role assignment.</p>
         </aside>
@@ -152,13 +152,13 @@
       <div class="section-intro"><h2 id="how">Three steps.<br><em>Then go build.</em></h2><p>The checkout flow is intentionally tied to Discord so access lands on the right member automatically.</p></div>
       <div class="steps">
         <div class="step"><b>1</b><h3>Enter Reset Inner Circle</h3><p>Join or open the Reset Discord server using your creator account.</p></div>
-        <div class="step"><b>2</b><h3>Run <code>/membership</code></h3><p>RMS verifies your Discord identity and presents the available membership checkout state for your account.</p></div>
+        <div class="step"><b>2</b><h3>Run <code>/membership</code></h3><p>RMS GP verifies your Discord identity and presents the available membership checkout state for your account.</p></div>
         <div class="step"><b>3</b><h3>Checkout with Stripe</h3><p>After payment, the lifecycle system reconciles membership state, resource access and your paid Discord tier.</p></div>
       </div>
     </section>
 
     <section class="security-band wrap">
-      <div><p class="kicker">BUILT TO FAIL CLOSED</p><h2>Your payment should never outrun your access.</h2><p class="lead">RMS validates webhook signatures, rejects stale or duplicate transitions, preserves paid-through access, and keeps perpetual purchases separate from membership-derived permissions.</p></div>
+      <div><p class="kicker">BUILT TO FAIL CLOSED</p><h2>Your payment should never outrun your access.</h2><p class="lead">RMS GP validates webhook signatures, rejects stale or duplicate transitions, preserves paid-through access, and keeps perpetual purchases separate from membership-derived permissions.</p></div>
       <div class="security-list">
         <div><strong>Identity-bound checkout</strong><br><small>Discord identity—not editable email—is the role authority.</small></div>
         <div><strong>Lifecycle-aware access</strong><br><small>Upgrades, downgrades, cancellation and resubscribe are reconciled.</small></div>
@@ -170,12 +170,12 @@
       <p class="kicker">BEFORE YOU JOIN</p>
       <h2 id="faq-title">Clear answers.<br><em>No fine-print games.</em></h2>
       <div class="faq-grid">
-        <details><summary>Does membership give RMS ownership of my work?</summary><p>No. Membership is an access and participation product. Ownership, publishing, licensing and rights agreements remain separate and require their own explicit terms.</p></details>
-        <details><summary>Why does checkout start in Discord?</summary><p>It lets RMS bind your paid access to the correct Discord identity automatically, instead of guessing from an email address.</p></details>
+        <details><summary>Does membership give RMS GP ownership of my work?</summary><p>No. Membership is an access and participation product. Ownership, publishing, licensing and rights agreements remain separate and require their own explicit terms.</p></details>
+        <details><summary>Why does checkout start in Discord?</summary><p>It lets RMS GP bind your paid access to the correct Discord identity automatically, instead of guessing from an email address.</p></details>
         <details><summary>What happens if I cancel?</summary><p>When Stripe marks a subscription to cancel at period end, access is retained through the paid-through boundary. Membership-derived access is revoked after the subscription actually ends.</p></details>
         <details><summary>What if a payment fails?</summary><p>A temporary past-due state does not instantly destroy access. Stripe lifecycle status is reconciled and access is removed only when the subscription reaches a terminal unpaid or canceled state.</p></details>
         <details><summary>Can I upgrade or downgrade?</summary><p>Yes. Tier changes are reconciled to the actual subscription state and the matching membership access level.</p></details>
-        <details><summary>Does membership guarantee sync placements or revenue?</summary><p>No. RMS does not promise income, placements, publishing deals or licensing outcomes through membership.</p></details>
+        <details><summary>Does membership guarantee sync placements or revenue?</summary><p>No. RMS GP does not promise income, placements, publishing deals or licensing outcomes through membership.</p></details>
       </div>
     </section>
 
