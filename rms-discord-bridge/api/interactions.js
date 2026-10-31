@@ -21,7 +21,7 @@ export default async function handler(req,res){
  if(ASSISTANCE_COMMANDS.has(commandName)||([3,5].includes(interaction.type)&&String(interaction.data?.custom_id||'').startsWith('ra1.'))){
   try{return sendJson(res,200,await handleAssistance(interaction));}catch(error){console.warn('rms.assistance.unavailable',error?.name||'Error');return sendJson(res,200,assistanceFailure());}
  }
- if(interaction.type!==APPLICATION_COMMAND)return sendJson(res,200,{type:CHANNEL_MESSAGE_WITH_SOURCE,data:{content:'This RMS interaction is not supported. Open /helpstudio for current controls.',flags:EPHEMERAL_FLAG,allowed_mentions:{parse:[]}}});
+ if(interaction.type!==APPLICATION_COMMAND)return sendJson(res,200,{type:CHANNEL_MESSAGE_WITH_SOURCE,data:{content:'This RMS GP interaction is not supported. Open /helpstudio for current controls.',flags:EPHEMERAL_FLAG,allowed_mentions:{parse:[]}}});
  try{
   const commandResponse=commandName==='membership'?buildMembershipCommandResponse(interaction.member?.user?.id||interaction.user?.id||''):buildCommandResponse(commandName);
   const data={allowed_mentions:{parse:[]}};if(commandResponse.content)data.content=commandResponse.content;if(commandResponse.embeds)data.embeds=commandResponse.embeds;if(commandResponse.components)data.components=commandResponse.components;if(commandResponse.ephemeral)data.flags=EPHEMERAL_FLAG;
