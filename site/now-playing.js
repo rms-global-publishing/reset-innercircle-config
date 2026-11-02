@@ -1,5 +1,5 @@
 (() => {
-  const DISCORD_INVITE = 'https://discord.gg/PAHFE5mGV';
+  const DISCORD_INVITE = 'https://discord.gg/DWyT4vskVW';
   const STATE_LABELS = {
     live: 'LIVE NOW',
     soon: 'STARTING SOON',

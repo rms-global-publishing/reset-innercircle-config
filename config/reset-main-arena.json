@@ -4,7 +4,7 @@
   "owner": "Angelea McCullough, Founder of RMS Global Publishing",
   "server_id": "1429398855681573038",
   "public_gateway": "https://resetinnercircle.com/arena.html",
-  "discord_invite": "https://discord.gg/hE5TarQsut",
+  "discord_invite": "https://discord.gg/qeMuUUrjyf",
   "canonical_channel_url": "https://discord.com/channels/1429398855681573038/1429398859020370096",
   "canonical_channel_id": "1429398859020370096",
   "channel_binding_policy": "Canonical channel verified by the owner. Future changes require an explicitly verified Discord channel URL; never infer channel IDs.",
@@ -27,22 +27,78 @@
     "downstream Platform Missions, collaboration, Soul Flow Lounge, Studio and opportunities"
   ],
   "automation_ownership": {
-    "carl_bot": ["Code of Law gate", "shared access role", "self roles", "moderation"],
-    "rms_creatorhub": ["public-safe routing", "normalized attribution", "opportunity routing"],
-    "zapier": ["approved announcements", "event reminders", "live-now signals", "recaps", "room spark scheduling after beta activation"],
-    "tatsu": ["verified participation recognition"],
-    "statbot": ["aggregate community health"]
+    "carl_bot": [
+      "Code of Law gate",
+      "shared access role",
+      "self roles",
+      "moderation"
+    ],
+    "rms_creatorhub": [
+      "public-safe routing",
+      "normalized attribution",
+      "opportunity routing"
+    ],
+    "zapier": [
+      "approved announcements",
+      "event reminders",
+      "live-now signals",
+      "recaps",
+      "room spark scheduling after beta activation"
+    ],
+    "tatsu": [
+      "verified participation recognition"
+    ],
+    "statbot": [
+      "aggregate community health"
+    ]
   },
   "privacy": {
-    "allowed_attribution": ["source", "partner", "campaign", "public route", "event type"],
-    "prohibited": ["Facebook member scraping", "private post ingestion", "member list export", "private Discord message ingestion", "credential sharing"]
+    "allowed_attribution": [
+      "source",
+      "partner",
+      "campaign",
+      "public route",
+      "event type"
+    ],
+    "prohibited": [
+      "Facebook member scraping",
+      "private post ingestion",
+      "member list export",
+      "private Discord message ingestion",
+      "credential sharing"
+    ]
   },
-  "revenue_priority": ["paid service or licensing action", "checkout", "qualified reply", "event attendance", "click", "view"],
+  "revenue_priority": [
+    "paid service or licensing action",
+    "checkout",
+    "qualified reply",
+    "event attendance",
+    "click",
+    "view"
+  ],
   "downstream_routes": {
     "live_events": "https://discord.com/channels/1429398855681573038/1429398859020370096",
     "soul_flow_lounge": "https://discord.com/channels/1429398855681573038/1430445705230553230",
     "virtual_studio": "https://resetinnercircle.com/#studio",
     "services": "https://resetinnercircle.com/#services",
     "support": "https://resetinnercircle.com/#support"
+  },
+  "legacy_valid_invite": "https://discord.gg/hE5TarQsut",
+  "canonical_server_join_invite": "https://discord.gg/DWyT4vskVW",
+  "discord_invite_validation": {
+    "checked_date": "2026-11-02",
+    "method": "Discord public invite API",
+    "guild_id": "1429398855681573038",
+    "main_arena_channel_id": "1429398859020370096",
+    "expired_invite": "PAHFE5mGV",
+    "no_member_role_access_changed": true
+  },
+  "signal_city": {
+    "experience_url": "https://signalcity.rmsglobalpublishing.com/",
+    "status": "PUBLIC_FINAL_BETA",
+    "mission_progress_authority": "SIGNAL_CITY_GAME_ONLY",
+    "player_saves_private": true,
+    "scheduled_event_authority": "DISCORD_NATIVE_EVENTS",
+    "arena_entry": "https://discord.com/channels/1429398855681573038/1429398859020370096"
   }
 }

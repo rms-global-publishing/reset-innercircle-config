@@ -823,5 +823,109 @@
     "recognition_is_mastery": false,
     "payment_reconciliation_status": "PAID_RECEIPT_CONFIRMED_GUILD_ENTITLEMENT_UNVERIFIED",
     "support_inquiry_sent_at": "2026-10-23"
+  },
+  "signal_city_arena_20261102": {
+    "change_key": "RMSGP-RESET-CARL-SIGNALCITY-20261102",
+    "intended_guild_id": "1429398855681573038",
+    "founder": "Angelea McCullough, Founder of RMS Global Publishing",
+    "implementation_status": "PUBLIC_BRIDGE_AND_GATEWAY_ROUTING_IMPLEMENTED_CARL_DASHBOARD_CONFIGURATION_AWAITING_AUTHENTICATED_READBACK",
+    "premium_activation": "UNVERIFIED_DO_NOT_REPURCHASE",
+    "arena_channel_id": "1429398859020370096",
+    "entry_routes": {
+      "main_arena": "https://discord.com/channels/1429398855681573038/1429398859020370096",
+      "join": "https://discord.gg/DWyT4vskVW",
+      "signal_city": "https://signalcity.rmsglobalpublishing.com/",
+      "creatorhub": "https://creators.rmsglobalpublishing.com/start"
+    },
+    "owner_assignment": {
+      "carl": "CODE_OF_LAW_MODERATION_SELF_ROLES_NATIVE_XP_APPROVED_STICKIES_HOST_LAUNCH_TAGS_WHEN_PROVIDER_CONFIRMED",
+      "rms_creatorhub_discord_app": "SLASH_EVENTS_MISSIONS_GAME_SECURE_CREATORHUB_ROUTING",
+      "discord_native": "EVENT_RSVP_CALENDAR_VERIFICATION_AND_MEMBER_PERMISSIONS",
+      "zapier": "APPROVED_CROSS_PLATFORM_SCHEDULE_AND_RECAP_NOT_OWNED_BY_CARL",
+      "tatsu": "VERIFIED_NON_AUTHORITY_RECOGNITION_ONLY",
+      "signal_city": "EXCLUSIVE_GAME_MISSION_PROGRESS_SAVES_REWARDS_AND_CHARACTER_STATE",
+      "rms_global_publishing": "EXCLUSIVE_RIGHTS_LICENSING_PAYMENTS_AND_CATALOG_APPROVAL"
+    },
+    "host_runbook": [
+      {
+        "step": "PREP",
+        "action": "Founder/mod creates a Discord native scheduled event with an explicit start time and appropriate room; no fabricated LIVE state"
+      },
+      {
+        "step": "ANNOUNCE",
+        "action": "One designated owner posts event announcement to Main Arena; optional Live Events or RESET Arena Games opt-in role only; never @everyone"
+      },
+      {
+        "step": "ENTRY",
+        "action": "Two-minute gated entry uses existing Code of Law and event workflow, with per-user thread only where Discord permissions permit"
+      },
+      {
+        "step": "PARTICIPATE",
+        "action": "Members join Signal City public beta, share authentic progress voluntarily, or attend the Main Arena / Sound Stage"
+      },
+      {
+        "step": "VERIFY",
+        "action": "Moderators verify event participation or feedback; never infer missions, XP, purchases, placements or rights from chat"
+      },
+      {
+        "step": "RECOGNIZE",
+        "action": "Recognition-only acknowledgments; no paid/private role grants"
+      },
+      {
+        "step": "CLOSE",
+        "action": "One official recap and link to feedback; keep event audit, support and mod logs; no automatic purges"
+      }
+    ],
+    "approved_event_templates": [
+      {
+        "key": "signal-city-explore",
+        "title": "Signal City Exploration Night",
+        "destination": "MAIN_ARENA",
+        "route": "https://signalcity.rmsglobalpublishing.com/",
+        "role": "RESET Arena Games",
+        "automatic_progress_award": false
+      },
+      {
+        "key": "signal-city-studio",
+        "title": "Signal City Beat & Vocal Challenge",
+        "destination": "MAIN_ARENA",
+        "route": "https://signalcity.rmsglobalpublishing.com/",
+        "role": "Platform Missions",
+        "automatic_progress_award": false
+      },
+      {
+        "key": "omnilink-power-hour",
+        "title": "OmniLink Power Hour",
+        "destination": "MAIN_ARENA",
+        "route": "https://resetinnercircle.com/arena.html",
+        "role": "OmniLink Power Hour",
+        "automatic_progress_award": false
+      },
+      {
+        "key": "reset-sound-stage",
+        "title": "RESET Sound Stage Showcase",
+        "destination": "SOUND_STAGE",
+        "route": "https://resetinnercircle.com/live.html",
+        "role": "Live Events",
+        "automatic_progress_award": false
+      }
+    ],
+    "anti_spam": {
+      "one_owner_per_event_and_correlation_id": true,
+      "default_mentions": "NONE",
+      "only_opt_in_role_mentions": true,
+      "do_not_repeat_unchanged_status": true,
+      "manual_event_fallback": true
+    },
+    "governance": {
+      "do_not_claim_live_session_without_provider_or_host_evidence": true,
+      "do_not_post_private_creator_data": true,
+      "do_not_purge_evidence": true,
+      "do_not_grant_membership_staff_rights_or_music_licenses": true,
+      "retain_existing_8_tags": true,
+      "retain_current_26_logging_switches": true,
+      "permissions_on_log_destinations": "UNVERIFIED_REQUIRES_DISCORD_READBACK",
+      "no_new_paid_tools": true
+    }
   }
 }
