@@ -30,11 +30,17 @@ test('verified guild, Main Arena direct invite and voluntary access are preserve
 test('Carl intent is configured but unverified premium and private-log protections remain fail closed',()=>{
  const carl=json('config/carl-premium-automation.json');
  assert.equal(carl.guild.id,GUILD);
- assert.equal(carl.premium.payment_reconciliation.post_purchase_premium_entitlement,'UNVERIFIED');
+ assert.equal(carl.premium.payment_reconciliation.post_purchase_premium_entitlement,'VERIFIED_ACTIVE_GUILD_1429398855681573038');
+ assert.equal(carl.premium.payment_reconciliation.independent_provider_activation_certified,true);
+ assert.equal(carl.live_premium_audit_20261102.sticky_record_count,4);
+ assert.equal(carl.premium_features.sticky_messages.live_state.verified_records,4);
+ assert.equal(carl.premium_features.voice_role_links.live_state.records,0);
+ assert.equal(carl.premium_features.auto_purge.live_state.configured_channels,0);
+ assert.equal(carl.live_premium_audit_20261102.staff_only_log_permissions,'NOT_READ_BACK');
  assert.equal(carl.premium.payment_reconciliation.no_repurchase,true);
  assert.equal(carl.standard_features_to_harden.logging.live_state.privacy_verification,'UNVERIFIED_DISCORD_PERMISSION_READBACK_REQUIRED');
  const x=carl.signal_city_arena_20261102;
- assert.match(x.implementation_status,/PENDING_AUTHENTICATED|AWAITING_AUTHENTICATED/);
+ assert.match(x.implementation_status,/PREMIUM_ACTIVE_SCOPED_STICKY_VERIFIED/);
  assert.equal(x.governance.no_new_paid_tools,true);
  assert.equal(x.governance.do_not_grant_membership_staff_rights_or_music_licenses,true);
  assert.equal(x.anti_spam.one_owner_per_event_and_correlation_id,true);
