@@ -1,6 +1,6 @@
 {
   "schema_version": "1.3.2",
-  "status": "scoped_configuration_verified_customer_path_and_entitlement_gates_open",
+  "status": "scoped_premium_verified_main_arena_sticky_live_security_and_event_e2e_pending",
   "owner": "Angelea McCullough, Founder of RMS Global Publishing",
   "system": "Reset Inner Circle / Carl-bot Premium Automation",
   "guild": {
@@ -11,23 +11,24 @@
   },
   "premium": {
     "founder_report": "Older Carl authenticated audit on 2026-10-15 showed Premium inactive. Later that day, Discord issued a successful Carlbot-Premium one-server payment receipt. Server assignment/activation after the receipt has NOT been verified; support inquiry sent 2026-10-23. Do not repurchase.",
-    "latest_visual_evidence": "Authenticated Carl botsettings says 'Carlbot Premium — Not active, get it on Premium'; Carl Premium account page says 'It looks like you don’t have premium'. Premium-only panels expose historical records but disable new Premium writes.",
-    "activation_gate": "Do not repurchase, mark premium ACTIVE, or enable Premium-only modules until authenticated post-payment Carl/Discord readback confirms the intended guild entitlement and the applicable features.",
+    "latest_visual_evidence": "2026-11-02 authenticated Carl Bot Settings for Reset Inner Circle displayed Carlbot Premium: Active. Enjoy!. This supersedes pre-purchase inactive observations; no repurchase.",
+    "activation_gate": "Premium provider activation verified for intended guild on 2026-11-02. Apply only readback-validated roles, logs and premium modules; do not infer privileged channel/role security from a Premium badge.",
     "source_of_truth": "Carl dashboard + this manifest after live verification",
     "payment_reconciliation": {
       "evidence_date": "2026-10-15T22:29:33-04:00",
       "evidence_type": "DISCORD_PAYMENT_SUCCEEDED_RECEIPT_FOR_CARLBOT_PREMIUM_ONE_SERVER",
       "amount_and_billing_sensitive_detail": "NOT_STORED_IN_PUBLIC_MANIFEST",
-      "dashboard_last_direct_check": "2026-10-15_BOTH_CARL_PREMIUM_SURFACES_REPORTED_INACTIVE_PRIOR_TO_RECEIPT",
-      "post_purchase_premium_entitlement": "UNVERIFIED",
+      "dashboard_last_direct_check": "2026-11-02_AUTHENTICATED_CARL_BOTSETTINGS_PREMIUM_ACTIVE_ENJOY",
+      "post_purchase_premium_entitlement": "VERIFIED_ACTIVE_GUILD_1429398855681573038",
       "intended_guild_id": "1429398855681573038",
       "support_inquiry": "SENT_2026-10-23",
-      "post_purchase_authenticated_recheck": "NOT_AVAILABLE_REMOTE_DESKTOP_OFFLINE",
-      "independent_provider_activation_certified": false,
+      "post_purchase_authenticated_recheck": "VERIFIED_ACTIVE_2026-11-02",
+      "independent_provider_activation_certified": true,
       "no_repurchase": true,
       "no_authority_or_paid_access_grants": true,
-      "next_evidence_gate": "Authenticated Carl dashboard and Discord user App Subscription assignment must confirm guild Premium activation before enabling premium-only workflows."
-    }
+      "next_evidence_gate": "Verify role hierarchy and private log channel permissions; conduct sandbox member role/voice-link/moderation/event QA; no additional purchase."
+    },
+    "latest_status": "VERIFIED_ACTIVE_GUILD_1429398855681573038_20261102"
   },
   "operating_rules": [
     "Keep Discord usable if Carl-bot is offline.",
@@ -78,14 +79,14 @@
       "role_permissions": "none beyond visual recognition",
       "boundary": "Do not imply RMS representation, licensing approval, professional clearance, employment, or publishing status.",
       "live_state": {
-        "premium_active": false,
+        "premium_active": true,
         "announcement_destination": "🏆｜creator-rankings",
         "rate_limit": "1 XP-eligible message per 60 seconds",
         "level_modulo": 5,
         "reward_records": 0,
         "removed_unsafe_reward": "🪶 RESET Inner Circle VIP at level 75",
         "safety_reason": "XP may recognize participation but must never grant VIP, paid access, staff authority, licensing approval, or private access.",
-        "status": "SAFE_FAIL_CLOSED_PENDING_PREMIUM_ENTITLEMENT"
+        "status": "PREMIUM_ENABLED_LEVELS_EXISTING_SETTINGS_REVIEWED_NO_NEW_REWARD_OR_PRIVATE_ROLE"
       }
     },
     "sticky_messages": {
@@ -118,14 +119,27 @@
       ],
       "rule": "One sticky per high-value channel; no duplicate banners or clutter.",
       "live_state": {
-        "premium_active": false,
+        "premium_active": true,
         "existing_records": [
           "#✨-glow-exchange-✨",
           "#💎｜reset-support-hub",
-          "#🌐-signal-sync"
+          "#🌐-signal-sync",
+          "#reset-main-arena"
         ],
-        "create_new_disabled": true,
-        "note": "Existing historical stickies remain. New high-value stickies are blocked until the already-paid Premium entitlement is recognized."
+        "create_new_disabled": false,
+        "note": "Four existing/revised records reload-verified in authenticated Carl dashboard. Public-safe contents only. No mass mentions.",
+        "verified_records": 4,
+        "main_arena": {
+          "channel": "reset-main-arena",
+          "expiry_days": 14,
+          "created_and_reload_verified": "2026-11-02",
+          "content_purpose": "Signal City Public Final Beta, Discord Scheduled Events, Sound Stage and routing, no mass mentions or auto rewards"
+        },
+        "glow_exchange": {
+          "channel": "glow-exchange",
+          "updated_and_reload_verified": "2026-11-02",
+          "correction": "Removed obsolete Tatsu daily credit purchase claims; community recognition does not buy services, VIP, membership, game rewards or licensing"
+        }
       }
     },
     "voice_role_links": {
@@ -155,7 +169,7 @@
       ],
       "role_permissions": "no elevated permissions",
       "live_state": {
-        "premium_active": false,
+        "premium_active": true,
         "records": 0,
         "removed_legacy_links": [
           "🎤 | RESET Sound Stage → 🎤 Reset Sound Stage Fast Track",
@@ -170,7 +184,7 @@
           "Game Room → 🎮 Game Room Live",
           "Reset Media Studios → 🎙️ Studio Live"
         ],
-        "status": "CLEARED_PENDING_SAFE_PRESENCE_ROLES_AFTER_PREMIUM_RECOVERY"
+        "status": "PREMIUM_AVAILABLE_ZERO_LINKS_ROLE_HIERARCHY_AND_PERMISSION_REVIEW_PENDING"
       }
     },
     "auto_purge": {
@@ -199,9 +213,9 @@
         "staff audit records"
       ],
       "live_state": {
-        "premium_active": false,
+        "premium_active": true,
         "configured_channels": 0,
-        "status": "SAFE_FAIL_CLOSED",
+        "status": "PREMIUM_AVAILABLE_ZERO_DESTRUCTIVE_AUTOPURGE_CHANNELS",
         "note": "No Auto Purge channels configured; protected records remain untouched."
       }
     },
@@ -828,8 +842,8 @@
     "change_key": "RMSGP-RESET-CARL-SIGNALCITY-20261102",
     "intended_guild_id": "1429398855681573038",
     "founder": "Angelea McCullough, Founder of RMS Global Publishing",
-    "implementation_status": "PUBLIC_BRIDGE_AND_GATEWAY_ROUTING_IMPLEMENTED_CARL_DASHBOARD_CONFIGURATION_AWAITING_AUTHENTICATED_READBACK",
-    "premium_activation": "UNVERIFIED_DO_NOT_REPURCHASE",
+    "implementation_status": "BRIDGE_AND_GATEWAY_LIVE_AND_PREMIUM_ACTIVE_SCOPED_STICKY_VERIFIED_PRIVACY_GATES_PENDING",
+    "premium_activation": "VERIFIED_ACTIVE_GUILD_1429398855681573038_20261102",
     "arena_channel_id": "1429398859020370096",
     "entry_routes": {
       "main_arena": "https://discord.com/channels/1429398855681573038/1429398859020370096",
@@ -927,5 +941,29 @@
       "permissions_on_log_destinations": "UNVERIFIED_REQUIRES_DISCORD_READBACK",
       "no_new_paid_tools": true
     }
+  },
+  "live_premium_audit_20261102": {
+    "change_key": "RMSGP-CARL-PREMIUM-LIVE-20261102",
+    "owner": "Angelea McCullough, Founder of RMS Global Publishing",
+    "verified_date": "2026-11-02",
+    "guild_id": "1429398855681573038",
+    "source": "Authenticated Carl Bot Settings, Levels, Sticky Messages, Voice role linking, Auto Purge UI on authorized PC",
+    "entitlement": "Carlbot Premium - Active. Enjoy!",
+    "sticky_record_count": 4,
+    "main_arena_sticky": "CREATED_14_DAY_RELOAD_VERIFIED",
+    "glow_exchange_sticky": "UPDATED_SAFE_CREATOR_COPY_RELOAD_VERIFIED",
+    "existing_other_stickies_preserved": true,
+    "premium_levels_existing_settings": "READ_ONLY_REVIEWED",
+    "premium_voice_links": "ZERO_CONFIGURED_ROLE_GRANTS",
+    "premium_auto_purge": "ZERO_CHANNELS_CONTENT_PRESERVED",
+    "real_event_host_end_to_end": "NOT_RUN",
+    "staff_only_log_permissions": "NOT_READ_BACK",
+    "role_hierarchy": "NOT_READ_BACK",
+    "real_member_onboarding_e2e": "NOT_RUN",
+    "manual_native_discord_events_fallback": true,
+    "game_mission_grant": false,
+    "catalog_licenses_or_paid_access_grant": false,
+    "extra_cost": false,
+    "status": "ACTIVE_WITH_SAFE_SCOPE_VERIFIED_FURTHER_CERTIFICATION_REQUIRED"
   }
 }
