@@ -40,7 +40,7 @@
           <a class="track soundable" data-event="footer_arena_click" data-placement="bridge_footer" href="/arena.html">Main Arena →</a>
           <a class="track soundable" data-event="footer_live_click" data-placement="bridge_footer" href="/live.html">Live Events →</a>
           <a class="track soundable" data-event="footer_partner_click" data-placement="bridge_footer" href="/partner.html">Partner Network →</a>
-          <a class="track soundable" data-event="footer_discord_click" data-placement="bridge_footer" href="https://discord.gg/PAHFE5mGV" target="_blank" rel="noopener">Discord Campus ↗</a>
+          <a class="track soundable" data-event="footer_discord_click" data-placement="bridge_footer" href="https://discord.gg/DWyT4vskVW" target="_blank" rel="noopener">Discord Campus ↗</a>
         </nav>
         <nav class="bridge-directory-column" aria-label="Create and support directory">
           <span>CREATE</span>

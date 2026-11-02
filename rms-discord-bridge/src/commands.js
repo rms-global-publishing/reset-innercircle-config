@@ -40,6 +40,7 @@ const resetUrl = () => env('RESET_INNER_CIRCLE_URL', 'https://resetinnercircle.c
 const networkUrl = () => `${resetUrl().replace(/\/$/, '')}/#network`;
 const studioUrl = () => `${resetUrl().replace(/\/$/, '')}/#studio`;
 const mainArenaUrl = 'https://discord.com/channels/1429398855681573038/1429398859020370096';
+const signalCityUrl = 'https://signalcity.rmsglobalpublishing.com/';
 const claimStageUrl = 'https://discord.com/channels/1429398855681573038/1468103128279941272';
 const claimStageInvite = 'https://discord.gg/YsxvcQBBqH';
 const gameRoomUrl = 'https://discord.com/channels/1429398855681573038/1429398859020370100';
@@ -75,12 +76,12 @@ export function buildCommandResponse(commandName) {
     case 'events': {
       const channelId = env('EVENTS_CHANNEL_ID');
       const route = channelId ? `<#${channelId}>` : 'the RESET LIVE event calendar';
-      return { ephemeral: false, embeds: [baseEmbed('RESET LIVE', `See upcoming live programming, Power Hours, Arena activity, creator education, collaboration sessions, and community events in ${route}.`)] };
+      return { ephemeral: false, embeds: [baseEmbed('RESET LIVE', `Join **RESET Main Arena:** ${mainArenaUrl}\n\n**Current event calendar:** ${resetUrl().replace(/\/$/, '')}/live.html\n\nOmniLink Power Hour, Sound Stage, Signal City play sessions, creator education, and collaboration are announced when scheduled. Check ${route}; no event is described as LIVE without host or provider confirmation. Use opt-in event roles rather than mass mentions.`)] };
     }
     case 'missions': {
       const channelId = env('MISSIONS_CHANNEL_ID');
       const route = channelId ? `<#${channelId}>` : 'Platform Missions';
-      return { ephemeral: false, embeds: [baseEmbed('Platform Missions', `Find current cross-platform creator activations in ${route}. Participation must remain authentic and platform-safe. No forced reciprocity, scripted comments, artificial views, or engagement loops.`)] };
+      return { ephemeral: false, embeds: [baseEmbed('Platform Missions', `**Signal City — Final Public Beta:** ${signalCityUrl}\nMake beats, record vocals, explore the city, and attempt the game's published missions.\n\n**Community Platform Missions:** ${route}\n**Reset Main Arena:** ${mainArenaUrl}\n\nCommunity participation is voluntary and authentic. Discord messages, Carl Levels, and reactions do **not** grant game mission XP, rewards, payments, membership, creator acceptance, or licensing rights. No forced reciprocity, scripted comments, or artificial views.`)] };
     }
     case 'leadership':
       return { ephemeral: false, embeds: [baseEmbed('RESET Leadership Pathway', `**Entry → Activation → Contribution → Visibility → Advancement**\n\nLeadership seats are voluntary community roles, not paid employment or contract labor. Leaders model healthy participation, protect dignity and privacy, support creator collaboration, and follow platform-safe engagement standards.\n\n**Code of Honor:** protect dignity · respect ownership · choose truth over hype · keep private things private · elevate the room.\n\n${networkUrl()}`)] };
@@ -91,7 +92,7 @@ export function buildCommandResponse(commandName) {
     case 'stage':
       return { ephemeral: false, embeds: [baseEmbed('Claim Your Stage', `Available to cleared members with a creative spark. This room is for musicians **and** podcasters, educators, visual creators, storytellers, spoken-word artists, gamers, interviewers, presenters and collaborative experiments.\n\n**Room:** ${claimStageUrl}\n**Invite:** ${claimStageInvite}\n\nRecording is off unless the session clearly announces otherwise.`)] };
     case 'game':
-      return { ephemeral: false, embeds: [baseEmbed('RESET Game Room', `Use the Game Room for community play, low-latency conversation, creator gaming sessions and game-stream collaboration.\n\n${gameRoomUrl}`)] };
+      return { ephemeral: false, embeds: [baseEmbed('RESET Game Room', `**Signal City — Final Public Beta:** ${signalCityUrl}\n\nUse the Game Room and Main Arena for community play, creator challenges, discussion, and beta feedback.\n\n**Game Room:** ${gameRoomUrl}\n**Main Arena:** ${mainArenaUrl}\n\nYour game progress remains in Signal City; Discord participation never automatically changes saves, ranks, or paid access.`)] };
     case 'startsession': {
       const sessionId = makeSessionId();
       return { ephemeral: true, embeds: [baseEmbed('RMS GP Studio Session', `**Session reference:** \`${sessionId}\`\n\nUse this reference in filenames, notes and service requests. This Discord command creates a privacy-safe tracking reference only. Until secure Discord-to-CreatorHub identity binding is enabled, persistent private session records are created through the authenticated CreatorHub Studio workflow rather than stored in Discord.\n\n**Studio:** ${studioUrl()}\n**CreatorHub:** ${creatorHubUrl()}`)] };

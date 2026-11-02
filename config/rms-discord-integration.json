@@ -555,5 +555,23 @@
     "scope": "Community configuration and canonical alignment only; not an all-product runtime certification",
     "recognition_is_entitlement": false,
     "recognition_is_mastery": false
+  },
+  "signal_city_arena_20261102": {
+    "change_key": "RMSGP-RESET-CARL-SIGNALCITY-20261102",
+    "guild_id": "1429398855681573038",
+    "mission_url": "https://signalcity.rmsglobalpublishing.com/",
+    "main_arena_channel_id": "1429398859020370096",
+    "member_join_invite": "https://discord.gg/DWyT4vskVW",
+    "slash_commands_to_improve": [
+      "events",
+      "missions",
+      "game"
+    ],
+    "provider_owner": "RMS CreatorHub Discord App",
+    "scope": "PUBLIC_SAFE_ROUTING_ONLY",
+    "mission_reward_grant": false,
+    "role_entitlement_grant": false,
+    "payment_or_rights_access": false,
+    "carl_live_dashboard_settings": "PENDING_AUTHENTICATED_PROVIDER_AND_PREMIUM_READBACK"
   }
 }
