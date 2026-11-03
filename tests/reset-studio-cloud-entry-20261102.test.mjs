@@ -34,3 +34,24 @@ test("RMS Global Publishing Cloud Studio XR names are consistent across Reset di
   assert.match(booking, /https:\/\/discord\.gg\/FJSCXCK5tF/);
   assert.match(booking, /RMS Global Publishing Cloud Studio XR/);
 });
+
+test("Reset shows the independently operated RMS Global Publishing identity and protects the existing studio-room name", () => {
+  const home = read("site/index.html");
+  const booking = read("site/booking.html");
+  assert.match(home, /Official operator: RMS Global Publishing/);
+  assert.match(home, /initials in our company name stand for Reset Media Studios/);
+  assert.match(home, /not affiliated with other businesses using similar Reset Media or Reset Studios names/);
+  assert.match(booking, /Independent studio identity:/);
+  assert.match(booking, /RMS Global Publishing is the public-facing studio operator/);
+  assert.match(booking, /not affiliated with similarly named third-party media or studio businesses/);
+  assert.match(booking, /https:\/\/discord\.gg\/FJSCXCK5tF/);
+  const ldMatch = home.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  assert.ok(ldMatch, "structured organization metadata exists");
+  const nodes = JSON.parse(ldMatch[1])["@graph"];
+  const operator = nodes.find(item => item["@type"] === "Organization");
+  const website = nodes.find(item => item["@type"] === "WebSite");
+  assert.equal(operator.name, "RMS Global Publishing");
+  assert.equal(operator.url, "https://rmsglobalpublishing.com/");
+  assert.equal(website.publisher["@id"], operator["@id"]);
+  assert.match(home, /"name":"Reset Inner Circle"/);
+});
