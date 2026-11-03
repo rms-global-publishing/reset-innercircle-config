@@ -44,7 +44,7 @@
         </nav>
         <nav class="bridge-directory-column" aria-label="Create and support directory">
           <span>CREATE</span>
-          <a class="track soundable" data-event="footer_studio_click" data-placement="bridge_footer" href="/#studio">Virtual Studio™ →</a>
+          <a class="track soundable" data-event="footer_studio_click" data-placement="bridge_footer" href="/#studio">Cloud Studio XR →</a>
           <a class="track soundable" data-event="footer_services_click" data-placement="bridge_footer" href="/#services">Production Services →</a>
           <a class="track soundable" data-event="footer_support_click" data-placement="bridge_footer" href="/#support">Support Reset →</a>
         </nav>
