@@ -41,8 +41,10 @@ const networkUrl = () => `${resetUrl().replace(/\/$/, '')}/#network`;
 const studioUrl = () => `${resetUrl().replace(/\/$/, '')}/#studio`;
 const mainArenaUrl = 'https://discord.com/channels/1429398855681573038/1429398859020370096';
 const signalCityUrl = 'https://signalcity.rmsglobalpublishing.com/';
-const claimStageUrl = 'https://discord.com/channels/1429398855681573038/1468103128279941272';
-const claimStageInvite = 'https://discord.gg/YsxvcQBBqH';
+const claimStageUrl = 'https://discord.com/channels/1429398855681573038/1435167634520932453';
+const studioVoiceUrl = 'https://discord.com/channels/1429398855681573038/1468103128279941272';
+const studioInvite = 'https://discord.gg/FJSCXCK5tF';
+const claimStageInvite = 'https://discord.gg/q9THymJDBe';
 const gameRoomUrl = 'https://discord.com/channels/1429398855681573038/1429398859020370100';
 
 const footer = 'RMS Global Publishing · RESET Inner Circle · Ownership First';
@@ -88,7 +90,7 @@ export function buildCommandResponse(commandName) {
     case 'safety':
       return { ephemeral: false, embeds: [baseEmbed('RESET Cross-Platform Safety', `RESET never requires or rewards actions that violate platform policies. Automation may route, remind, organize, and recognize. It does not impersonate members or manufacture engagement.\n\n**Facebook:** no mass tagging, repetitive comments, or forced reciprocity.\n**Instagram:** no rapid-fire automation or duplicate flooding.\n**TikTok:** no follow/unfollow cycles or artificial engagement.\n**YouTube:** no scripted comments, artificial views, or watch-time loops.\n**Twitch:** safe moderation, no automated spam, and proper music rights.\n\n${networkUrl()}`)] };
     case 'studio':
-      return { ephemeral: false, embeds: [baseEmbed('RESET Virtual Studio™', `The flagship RESET creative-room blueprint is multipurpose, not music-only. Use it for interviews, podcasts, performances, education, gaming, storytelling, visual sharing, live production and collaboration.\n\n**Studio:** ${studioUrl()}\n**Main Arena:** ${mainArenaUrl}\n\nProduction path: **Create → Wave Link → OBS → Discord / Live / Record**.`)] };
+      return { ephemeral: false, embeds: [baseEmbed('RESET Virtual Studio™', `The flagship RESET creative-room blueprint is multipurpose, not music-only. Use it for interviews, podcasts, performances, education, gaming, storytelling, visual sharing, live production and collaboration.\n\n**Studio terms:** ${studioUrl()}\n**Book:** https://resetinnercircle.com/booking\n**Studio voice channel:** ${studioVoiceUrl}\n**Studio permanent invite (not paid access):** ${studioInvite}\n**Main Arena:** ${mainArenaUrl}\n\nDAW setup: headphones on, select your DAW interface (48 kHz if supported), route only the intended mic and DAW mix into Discord input (Wave Link Stream Mix if used). Discord return goes to headphones, NOT into its own transmit bus. Test with another participant first. Consent required before recording or streaming. Self-led use by default; scheduled Founder/engineer assistance is separately scoped and priced. Verified Stripe payment and a confirmed booking, not an invite, control paid services.`)] };
     case 'stage':
       return { ephemeral: false, embeds: [baseEmbed('Claim Your Stage', `Available to cleared members with a creative spark. This room is for musicians **and** podcasters, educators, visual creators, storytellers, spoken-word artists, gamers, interviewers, presenters and collaborative experiments.\n\n**Room:** ${claimStageUrl}\n**Invite:** ${claimStageInvite}\n\nRecording is off unless the session clearly announces otherwise.`)] };
     case 'game':
