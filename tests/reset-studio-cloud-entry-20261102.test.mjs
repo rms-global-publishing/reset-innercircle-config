@@ -55,3 +55,12 @@ test("Reset shows the independently operated RMS Global Publishing identity and 
   assert.equal(website.publisher["@id"], operator["@id"]);
   assert.match(home, /"name":"Reset Inner Circle"/);
 });
+
+test("Reset sitemap contains public studio booking and accurate change dates without exposing private studio URLs", () => {
+  const sitemap = read("site/sitemap.xml");
+  const robots = read("site/robots.txt");
+  assert.match(sitemap, /https:\/\/resetinnercircle\.com\/booking/);
+  assert.match(sitemap, /<lastmod>2026-11-03<\/lastmod>/);
+  assert.doesNotMatch(sitemap, /creator\/studio-cloud|\/checkout\/studio/);
+  assert.match(robots, /Sitemap: https:\/\/resetinnercircle\.com\/sitemap\.xml/);
+});
