@@ -162,7 +162,7 @@
         <article>
           <p class="kicker">TOOLS YOU WILL USE</p>
           <h3>Built for real community work.</h3>
-          <ul><li>Reset Main Arena and live voice lounges</li><li>Creator missions and activation prompts</li><li>Event reminders and collaboration calls</li><li>Creator spotlights and participation recognition</li><li>Public-safe referral and campaign attribution</li><li>Virtual Studio and live-event routing</li></ul>
+          <ul><li>Reset Main Arena and live voice lounges</li><li>Creator missions and activation prompts</li><li>Event reminders and collaboration calls</li><li>Creator spotlights and participation recognition</li><li>Public-safe referral and campaign attribution</li><li>Cloud Studio XR and live-event routing</li></ul>
         </article>
         <article>
           <p class="kicker">WHY THIS MATTERS</p>
@@ -207,7 +207,7 @@
       <div class="revenue-panel" data-view-event="network_revenue_view">
         <div class="revenue-intro"><p class="kicker">SUSTAIN THE NETWORK</p><h3>Community access stays open. Real value can still earn.</h3><p>Revenue attaches to production, sponsorship, workshops and approved services around the community, not to forced participation or a leadership seat.</p></div>
         <div class="revenue-grid">
-          <a class="revenue-card track soundable" data-event="studio_service_inquiry" data-placement="network_revenue" href="${studioAnchor}"><span>01</span><strong>Virtual Studio Services</strong><small>Remote production, interviews, creator sessions and performance capture.</small></a>
+          <a class="revenue-card track soundable" data-event="studio_service_inquiry" data-placement="network_revenue" href="${studioAnchor}"><span>01</span><strong>RMS Global Publishing Cloud Studio XR Services</strong><small>Remote production, interviews, creator sessions and performance capture.</small></a>
           <a class="revenue-card track soundable" data-event="event_sponsor_interest" data-placement="network_revenue" href="${partnerUrl}"><span>02</span><strong>Event Sponsorship</strong><small>Brand-supported or partner-supported programming with clear disclosure.</small></a>
           <a class="revenue-card track soundable" data-event="group_feature_interest" data-placement="network_revenue" href="${partnerUrl}"><span>03</span><strong>Partner Spotlights</strong><small>Approved promotional features for leaders, creators and community initiatives.</small></a>
           <a class="revenue-card track soundable" data-event="workshop_event_interest" data-placement="network_revenue" href="${partnerUrl}"><span>04</span><strong>Workshops & Produced Events</strong><small>Paid production or ticketed experiences sold outside community membership.</small></a>
