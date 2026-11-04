@@ -81,7 +81,34 @@ export function membershipButtons(discordUserId) {
   ];
 }
 
-export function buildMembershipCommandResponse(discordUserId) {
+export function paidTierFromRoles(memberRoleIds = []) {
+  const roles = new Set(Array.isArray(memberRoleIds) ? memberRoleIds : []);
+  const ids = configuredRoleIds();
+  // Ambiguous or unconfigured role mappings never establish paid authority.
+  if (Object.values(ids).some(id => !id) || new Set(Object.values(ids)).size !== 3) return null;
+  const matches = Object.entries(ids).filter(([, id]) => roles.has(id));
+  return matches.length === 1 ? matches[0][0] : null;
+}
+
+export function buildMembershipCommandResponse(discordUserId, memberRoleIds = []) {
+  const paidTier = paidTierFromRoles(memberRoleIds);
+  if (paidTier) {
+    const plan = MEMBERSHIP_PLANS[paidTier];
+    const guidance = {
+      tier_1: 'Start in the Reset Engagement Lounge, join creator sessions, and explore your Member resources.',
+      tier_2: 'Start in the Reset Engagement Lounge, explore expanded Pro resources, and join eligible creator sessions.',
+      tier_3: 'Start in the Reset Engagement Lounge, explore Executive resources, and review priority participation opportunities where available.',
+    };
+    return {
+      ephemeral: true,
+      embeds: [{
+        color: 0xC8A24A,
+        title: `RESET Inner Circle - ${plan.name} member guide`,
+        description: `Your Discord account currently holds the ${plan.name} membership role.\n\n${guidance[paidTier]}\n\nMembership roles reflect access, not ownership or guaranteed placements. For billing changes, use your Stripe customer portal or contact support. If your role does not match your payment, contact support before purchasing again.`,
+        footer: { text: 'RMS Global Publishing - Reset Inner Circle - Ownership First' },
+      }],
+    };
+  }
   if (process.env.RMS_MEMBERSHIP_PUBLIC_ENABLED !== 'true') {
     return {
       ephemeral: true,
