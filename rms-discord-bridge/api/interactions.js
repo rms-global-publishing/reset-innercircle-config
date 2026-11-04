@@ -23,7 +23,7 @@ export default async function handler(req,res){
  }
  if(interaction.type!==APPLICATION_COMMAND)return sendJson(res,200,{type:CHANNEL_MESSAGE_WITH_SOURCE,data:{content:'This RMS GP interaction is not supported. Open /helpstudio for current controls.',flags:EPHEMERAL_FLAG,allowed_mentions:{parse:[]}}});
  try{
-  const commandResponse=commandName==='membership'?buildMembershipCommandResponse(interaction.member?.user?.id||interaction.user?.id||''):buildCommandResponse(commandName);
+  const commandResponse=commandName==='membership'?buildMembershipCommandResponse(interaction.member?.user?.id||interaction.user?.id||'',interaction.member?.roles||[]):buildCommandResponse(commandName);
   const data={allowed_mentions:{parse:[]}};if(commandResponse.content)data.content=commandResponse.content;if(commandResponse.embeds)data.embeds=commandResponse.embeds;if(commandResponse.components)data.components=commandResponse.components;if(commandResponse.ephemeral)data.flags=EPHEMERAL_FLAG;
   return sendJson(res,200,{type:CHANNEL_MESSAGE_WITH_SOURCE,data});
  }catch{return sendJson(res,200,assistanceFailure());}
