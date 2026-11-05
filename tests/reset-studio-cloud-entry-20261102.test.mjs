@@ -22,7 +22,7 @@ test("existing Studio checkout and event checkout remain intact", () => {
   assert.doesNotMatch(booking, /automatic.*(licen[cs]e|desktop).*grant/i);
 });
 
-test("RMS Global Publishing Cloud Studio XR names are consistent across Reset discovery while Discord stays Reset Media Studios", () => {
+test("RMS Global Publishing Cloud Studio XR names are consistent across Reset discovery and current Discord Cloud Studio XR naming", () => {
   const pages = ["site/index.html", "site/arena.html", "site/helpstudio.html", "site/live.html", "site/partner.html", "site/bridge.js", "site/network.js"];
   for (const name of pages) {
     const page = read(name);
@@ -30,16 +30,16 @@ test("RMS Global Publishing Cloud Studio XR names are consistent across Reset di
     assert.doesNotMatch(page, /Reset Media Virtual Studio|Virtual Studio™|Virtual Studio Services/, name);
   }
   const booking = read("site/booking.html");
-  assert.match(booking, /Reset Media Studios voice room/);
+  assert.match(booking, /Cloud Studio XR voice room/);
   assert.match(booking, /https:\/\/discord\.gg\/FJSCXCK5tF/);
   assert.match(booking, /RMS Global Publishing Cloud Studio XR/);
 });
 
-test("Reset shows the independently operated RMS Global Publishing identity and protects the existing studio-room name", () => {
+test("Reset shows the independently operated RMS Global Publishing identity and uses the current Cloud Studio XR voice-room name", () => {
   const home = read("site/index.html");
   const booking = read("site/booking.html");
   assert.match(home, /Official operator: RMS Global Publishing/);
-  assert.match(home, /initials in our company name stand for Reset Media Studios/);
+  assert.match(home, /Our current Discord studio voice room is Cloud Studio XR/);
   assert.match(home, /not affiliated with other businesses using similar Reset Media or Reset Studios names/);
   assert.match(booking, /Independent studio identity:/);
   assert.match(booking, /RMS Global Publishing is the public-facing studio operator/);
@@ -63,4 +63,22 @@ test("Reset sitemap contains public studio booking and accurate change dates wit
   assert.match(sitemap, /<lastmod>2026-11-03<\/lastmod>/);
   assert.doesNotMatch(sitemap, /creator\/studio-cloud|\/checkout\/studio/);
   assert.match(robots, /Sitemap: https:\/\/resetinnercircle\.com\/sitemap\.xml/);
+});
+
+
+test("Cloud Studio XR invite and Main Arena slash-command fallback remain aligned",()=>{
+ const commands=read("rms-discord-bridge/src/commands.js");
+ const help=read("site/helpstudio.html");
+ const booking=read("site/booking.html");
+ const now=JSON.parse(read("site/now-playing.json"));
+ const studio=now.programs.find(p=>p.id==="reset-media-studios");
+ assert.equal(studio.title,"RMS GP | Cloud Studio XR");
+ assert.equal(studio.live_url,"https://discord.gg/FJSCXCK5tF");
+ assert.match(commands,/Main Arena text chat/);
+ assert.match(commands,/1468103128279941272/);
+ assert.match(help,/Main Arena text channel/);
+ assert.match(booking,/Main Arena text channel/);
+ for(const path of ["site/index.html","site/helpstudio.html","site/booking.html"]){
+  assert.doesNotMatch(read(path),/Reset Media Studios/,path);
+ }
 });

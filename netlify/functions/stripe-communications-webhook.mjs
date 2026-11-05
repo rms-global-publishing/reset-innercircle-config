@@ -2,7 +2,7 @@ import { createHmac, timingSafeEqual } from 'node:crypto';
 
 const RESET_PAYMENT_LINKS = new Map([
   ['plink_1UG7sdLlKcswOpj9H69f92AA', { lane: 'reset_society_support', paymentType: 'optional_support', subject: 'Reset Society support payment received' }],
-  ['plink_1UG8HHLlKcswOpj9aJJoRmGd', { lane: 'reset_media_studios', paymentType: 'project_deposit', subject: 'Reset Media Studios project deposit received' }],
+  ['plink_1UG8HHLlKcswOpj9aJJoRmGd', { lane: 'reset_media_studios', paymentType: 'project_deposit', subject: 'RMS Global Publishing Cloud Studio XR project deposit received' }],
   ['plink_1UG8HNLlKcswOpj9oTj7dBbn', { lane: 'reset_live_events', paymentType: 'booking_deposit', subject: 'Reset Live booking deposit received' }]
 ]);
 
