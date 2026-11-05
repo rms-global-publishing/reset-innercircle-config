@@ -30,7 +30,7 @@ Premium features are approved for use where they add measurable community value 
 
 - **Levels & XP:** ambient participation progression only. Level roles are cosmetic/recognition roles and never imply RMS representation, professional clearance, licensing readiness, publishing status, employment, or authority.
 - **Sticky Messages:** one concise sticky in high-value channels such as Code of Law, Main Arena, Power Hour, Sound Stage, Help Desk, and community feedback.
-- **Voice-Role Links:** temporary presence roles for Sound Stage, Creator Showcase, Game Room, and Reset Media Studios. Never link authority/private-access roles.
+- **Voice-Role Links:** temporary presence roles for Sound Stage, Creator Showcase, Game Room, and Cloud Studio XR. Never link authority/private-access roles.
 - **Auto Purge:** only transient command/lobby/game chatter. Never purge event participation records, support history, moderation evidence, automation logs, rights/submission records, or decisions.
 - **Timed Reaction Roles:** event/session identities expire automatically after the event window. The existing two-minute entry-gate close remains its own workflow.
 - **Drama Watcher:** private moderator review channel only; never public-shame a member.

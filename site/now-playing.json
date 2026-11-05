@@ -46,12 +46,12 @@
     },
     {
       "id": "reset-media-studios",
-      "title": "Reset Media Studios",
+      "title": "RMS GP | Cloud Studio XR",
       "type": "Production Session",
       "state": "offline",
       "scheduled_start": null,
       "scheduled_end": null,
-      "live_url": "https://discord.gg/DWyT4vskVW",
+      "live_url": "https://discord.gg/FJSCXCK5tF",
       "replay_url": null,
       "notification_role": "Collaboration Calls"
     }
