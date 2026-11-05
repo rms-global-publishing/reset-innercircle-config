@@ -170,7 +170,7 @@
       "role_permissions": "no elevated permissions",
       "live_state": {
         "premium_active": true,
-        "records": 0,
+        "records": 1,
         "removed_legacy_links": [
           "🎤 | RESET Sound Stage → 🎤 Reset Sound Stage Fast Track",
           "🎯 | Game Room → Lounge Member",
@@ -184,7 +184,17 @@
           "Game Room → 🎮 Game Room Live",
           "🎙️ | RMS GP | Cloud Studio XR → 🎙️ Studio Live"
         ],
-        "status": "PREMIUM_AVAILABLE_ZERO_LINKS_ROLE_HIERARCHY_AND_PERMISSION_REVIEW_PENDING"
+        "status": "STUDIO_VOICE_LINK_CONFIGURED_LIVE_JOIN_LEAVE_NOT_YET_TESTED",
+        "provider_readback_at": "2026-11-05",
+        "verified_link": {
+          "guild_id": "1429398855681573038",
+          "channel_id": "1468103128279941272",
+          "channel_name": "🎙️ | RMS GP | Cloud Studio XR",
+          "temporary_role": "🎙️ Studio Live",
+          "permission_scope": "zero extra permissions; no paid, staff, or private access authority",
+          "verification": "Carl Premium > Voice Link: one saved record, persisted after page reload",
+          "live_join_leave_test": "NOT_RUN"
+        }
       }
     },
     "auto_purge": {
