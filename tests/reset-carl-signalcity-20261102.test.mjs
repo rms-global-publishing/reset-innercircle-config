@@ -34,7 +34,12 @@ test('Carl intent is configured but unverified premium and private-log protectio
  assert.equal(carl.premium.payment_reconciliation.independent_provider_activation_certified,true);
  assert.equal(carl.live_premium_audit_20261102.sticky_record_count,4);
  assert.equal(carl.premium_features.sticky_messages.live_state.verified_records,4);
- assert.equal(carl.premium_features.voice_role_links.live_state.records,0);
+ assert.equal(carl.premium_features.voice_role_links.live_state.records,1);
+ const verifiedStudio=carl.premium_features.voice_role_links.live_state.verified_link;
+ assert.equal(verifiedStudio.channel_id,'1468103128279941272');
+ assert.equal(verifiedStudio.temporary_role,'🎙️ Studio Live');
+ assert.equal(verifiedStudio.live_join_leave_test,'NOT_RUN');
+ assert.match(verifiedStudio.permission_scope,/no paid, staff, or private access/);
  assert.equal(carl.premium_features.auto_purge.live_state.configured_channels,0);
  assert.equal(carl.live_premium_audit_20261102.staff_only_log_permissions,'NOT_READ_BACK');
  assert.equal(carl.premium.payment_reconciliation.no_repurchase,true);
