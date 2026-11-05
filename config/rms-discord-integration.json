@@ -94,9 +94,17 @@
     "carl_premium_profile": "config/carl-premium-automation.json",
     "carl_premium_state": {
       "founder_report": "renewed 2026-10-01",
-      "dashboard_visual_state": "premium_not_active_in_latest_screenshot",
-      "operational_state": "activation_verification_required_before_premium-only dashboard writes",
-      "public_fail_safe": "Reset Inner Circle, resetinnercircle.com, Discord native Events, RMS CreatorHub slash commands and manual operations remain usable regardless of Carl Premium state."
+      "dashboard_visual_state": "premium_active_verified_in_authenticated_dashboard_2026-11-05",
+      "operational_state": "active; one Studio-specific voice-presence link persisted",
+      "public_fail_safe": "Reset Inner Circle, resetinnercircle.com, Discord native Events, RMS CreatorHub slash commands and manual operations remain usable regardless of Carl Premium state.",
+      "studio_voice_link": {
+        "channel_id": "1468103128279941272",
+        "channel_name": "🎙️ | RMS GP | Cloud Studio XR",
+        "role": "🎙️ Studio Live",
+        "provider_state": "ONE_RECORD_VERIFIED_AFTER_RELOAD",
+        "role_permission_state": "NO_ELEVATED_PERMISSIONS",
+        "live_assign_revoke_state": "NOT_TESTED"
+      }
     },
     "free_browser_fallback": "docs/RMS_FREE_BROWSER_FALLBACK.md",
     "membership_automation": {
