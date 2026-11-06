@@ -38,5 +38,15 @@ export default async (request) => {
     return new Response(body, { status: 503, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
   }
 
-  return new Response(null, { status: 302, headers: { location: checkoutUrl, 'cache-control': 'no-store' } });
+  // Operational attribution only: no IP, cookie, payment details, or user identity.
+  // Correlate checkout starts by route and UTC time without adding paid infrastructure.
+  const source = request.headers.get('referer') || '';
+  let origin = 'direct';
+  try {
+    const referer = new URL(source);
+    if (referer.protocol === 'https:' && referer.hostname === url.hostname) origin = 'same-site';
+    else if (referer.protocol === 'https:') origin = 'external';
+  } catch { /* missing or invalid Referer */ }
+  console.info('reset_checkout_redirect', JSON.stringify({ lane: bucket, origin, at: new Date().toISOString() }));
+  return new Response(null, { status: 302, headers: { location: checkoutUrl, 'cache-control': 'no-store', 'referrer-policy': 'no-referrer' } });
 };
