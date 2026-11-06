@@ -20,3 +20,12 @@ test('every service card selects a supported offer and every local home anchor e
  assert.match(read('site/styles.css'),/\.lux-card::before\{[^}]*pointer-events:none/);
  assert.match(booking,/does not submit a booking automatically/);
 });
+
+test('service checkout emits privacy-minimal attribution and protects outbound redirect',()=>{
+ const handler=read('netlify/functions/service-checkout.mjs');
+ assert.match(handler,/reset_checkout_redirect/);
+ assert.match(handler,/lane: bucket, origin, at:/);
+ assert.match(handler,/referrer-policy': 'no-referrer'/);
+ assert.doesNotMatch(handler,/headers\.get\('x-forwarded-for'\)/);
+ assert.doesNotMatch(handler,/headers\.get\('cookie'\)/);
+});

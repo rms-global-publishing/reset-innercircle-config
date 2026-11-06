@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   contract:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: Checkout
@@ -33,5 +33,5 @@ jobs:
           RMS_HELP_EVIDENCE: ${{ runner.temp }}/rms-help-evidence
         run: |
           npm install --prefix "$RMS_CREATOR_QA_RUNTIME" --save-exact --ignore-scripts --no-audit --no-fund playwright@1.56.1
-          "$RMS_CREATOR_QA_RUNTIME/node_modules/.bin/playwright" install --with-deps chromium
+          "$RMS_CREATOR_QA_RUNTIME/node_modules/.bin/playwright" install chromium
           node tests/reset-help-browser.mjs
