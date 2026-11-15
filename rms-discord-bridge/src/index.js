@@ -8,6 +8,7 @@ import { buildCommandResponse } from './commands.js';
 import {buildMembershipCommandResponse} from './membership.js';
 import {ASSISTANCE_COMMANDS,handleAssistance,assistanceFailure} from './assistance.js';
 import {engineerMode,engineerUsesAssistance} from './engineer.js';
+import {isSoundcheckControl,soundcheckIdentity,verifySoundChoice,soundcheckEcho,soundcheckUnavailable} from './soundcheck.js';
 
 const token = process.env.DISCORD_TOKEN;
 const guildId = process.env.DISCORD_GUILD_ID;
@@ -51,16 +52,30 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
   try {
     const mode=engineerMode(interaction);
-    const delegated=ASSISTANCE_COMMANDS.has(interaction.commandName)&&(interaction.commandName!=='engineer'||engineerUsesAssistance(interaction.commandName,mode));
+    const delegated=ASSISTANCE_COMMANDS.has(interaction.commandName)&&interaction.commandName!=='soundcheck'&&interaction.commandName!=='helpstudio'&&(interaction.commandName!=='engineer'||engineerUsesAssistance(interaction.commandName,mode));
+    const quick=interaction.isChatInputCommand()&&(interaction.commandName==='soundcheck'||(interaction.commandName==='engineer'&&mode==='soundcheck'));
+    const envelope=()=>({id:interaction.id,type:interaction.isChatInputCommand()?2:interaction.isModalSubmit()?5:3,guild_id:interaction.guildId,channel_id:interaction.channelId,member:{user:{id:interaction.user.id},permissions:interaction.memberPermissions?.bitfield?.toString()||'0'},data:{name:interaction.commandName,custom_id:interaction.customId,options:interaction.isChatInputCommand()?interaction.options?.data||[]:[],components:interaction.isModalSubmit()?[{components:[...interaction.fields.fields.values()].map(f=>({custom_id:f.customId,value:f.value}))}]:[]}});
+    if(quick){await interaction.reply({...buildCommandResponse(interaction.commandName,envelope()),allowedMentions:{parse:[]}});return;}
+    if(interaction.isButton()&&isSoundcheckControl(envelope())){
+     let choice;
+     try{choice=verifySoundChoice(interaction.customId,soundcheckIdentity(envelope()));}catch{await interaction.reply({content:'This soundcheck control expired. Run /soundcheck again.',ephemeral:true});return;}
+     if(choice==='echo'){const {flags,...data}=soundcheckEcho().data;await interaction.reply({...data,ephemeral:true,allowedMentions:{parse:[]}});return;}
+     await interaction.deferReply({flags:64});
+     let answer;try{answer=await handleAssistance(envelope());}catch{answer=soundcheckUnavailable();}
+     const {flags,...data}=answer.data;
+     await interaction.editReply({...data,allowedMentions:{parse:[]}});return;
+    }
     if(interaction.isChatInputCommand()&&interaction.commandName==='engineer'&&mode==='readiness'&&!((interaction.memberPermissions?.bitfield||0n)&56n)){
       await interaction.reply({content:'Host readiness is for authorized Studio staff only. Use /soundcheck for member help.',ephemeral:true});return;
     }
     if(delegated||String(interaction.customId||'').startsWith('ra1.')){
       const form=interaction.isModalSubmit()?[{components:[...interaction.fields.fields.values()].map(field=>({custom_id:field.customId,value:field.value}))}]:[];
       const envelope={id:interaction.id,type:interaction.isChatInputCommand()?2:interaction.isModalSubmit()?5:3,guild_id:interaction.guildId,channel_id:interaction.channelId,member:{user:{id:interaction.user.id},permissions:interaction.memberPermissions?.bitfield.toString()||'0'},data:{name:interaction.commandName,custom_id:interaction.customId,options:interaction.isChatInputCommand()?interaction.options?.data||[]:[],components:form}};
-      let answer;try{answer=await handleAssistance(envelope);}catch{answer=assistanceFailure();}
+      const useDefer=interaction.isChatInputCommand()&&interaction.commandName==='engineer'&&['music','silent','readiness'].includes(mode);
+      if(useDefer)await interaction.deferReply({flags:64});
+      let answer;try{answer=await handleAssistance(envelope);}catch{answer=useDefer?soundcheckUnavailable():assistanceFailure();}
       if(answer?.type===9){await interaction.showModal(answer.data);return;}
-      if(answer?.data){const {allowed_mentions,...data}=answer.data;await interaction.reply({...data,allowedMentions:{parse:[]}});return;}
+      if(answer?.data){const {allowed_mentions,...data}=answer.data;if(useDefer)await interaction.editReply({...data,allowedMentions:{parse:[]}});else await interaction.reply({...data,allowedMentions:{parse:[]}});return;}
     }
     if(!interaction.isChatInputCommand()){await interaction.reply({content:'Open /helpstudio for current controls.',flags:64});return;}
     const response = interaction.commandName==='membership'?buildMembershipCommandResponse(interaction.user.id):buildCommandResponse(interaction.commandName,interaction);

@@ -13,14 +13,14 @@ export const ENGINEER_OPTIONS=[
  {name:'Request private Studio technical help',value:'request'},
 ];
 const allowed=new Set(ENGINEER_OPTIONS.map(o=>o.value));
-const assistanceModes=new Set(['soundcheck','music','silent','readiness']);
+const assistanceModes=new Set(['music','silent','readiness']);
 export function engineerMode(input){
  const options=input?.data?.options||input?.options?.data||[];
  const value=options.find(o=>o?.name==='issue')?.value;
  return typeof value==='string'&&allowed.has(value)?value:'menu';
 }
 export function engineerUsesAssistance(name,mode='menu'){
- return name==='soundcheck'||(name==='engineer'&&assistanceModes.has(mode));
+ return name==='engineer'&&assistanceModes.has(mode);
 }
 const studio='https://discord.com/channels/1429398855681573038/1468103128279941272';
 const arena='https://discord.com/channels/1429398855681573038/1429398859020370096';
@@ -34,7 +34,7 @@ function details(mode){
  case 'video':return {title:'Engineer: missing video',body:'1. Open the intended host Go Live stream, not merely the voice or virtual-camera tile. 2. Check that the host is actually sharing the intended screen or game. 3. If no host feed is available, report it privately; PS5, HDMI and capture-device diagnostics require the authorized host computer. This command cannot switch scenes or turn on streaming.'};
  case 'recording':return {title:'Engineer: recording safety',body:'Recording and streaming require session-specific notice and participant consent. Ask the host which source is being recorded, whether both voice and music are cleared, and how files will be protected. Use /startsession for a temporary reference, /savesession for naming, and /exportstems for the export checklist. No recording is started or stopped by Discord.'};
  case 'mpc':return {title:'Engineer: MPC and production',body:'Use /startsession to generate a temporary session reference, /savesession for versioned project naming, /exportstems for preparation, and /requestmix for the approved service route. Only owned/licensed samples and source audio may be used. The private RMS GP Sound Engineer can assist a booked or authorized host; this command does not open or control any member DAW or grant a paid session.'};
- default:return {title:'RMS GP Sound Engineer | Cloud Studio XR',body:'Use **/engineer** with the optional **issue** selector:\n- **Sound check:** interactive private audio help\n- **Voices, no music / Everything silent:** save the symptom in existing assistance\n- **Echo / Video / Recording / MPC:** targeted safe guidance\n- **Request:** open private CreatorHub Studio technical support\n- **Host readiness:** authorized studio staff only\n\nOr type **/soundcheck** for the fastest guided audio check.\n\nCloud Studio XR is a voice room. If the slash-command picker is missing, open the Main Arena text chat. Audio delivery and recording are not verified by a command alone; a listener must confirm them. No public access to the Founder workstation or private ChatGPT Sound Engineer is granted.'};
+ default:return {title:'RMS GP Sound Engineer | Cloud Studio XR',body:'**Start with /soundcheck:** four private buttons let you report hearing voice + music, voice only, silence or echo. This is a **listener check**, not automatic surveillance of your device.\n\n**Need a specific fix?** Use /engineer with the **issue** selector for music, silence, feedback, video, recording, MPC or private assistance. **Host readiness** is staff-only.\n\n**New here?** Run /helpstudio for the full Reset Inner Circle room map, memberships, creator services, events and support.\n\n**Privacy:** A member report is saved only when the assistance backend confirms it. No command opens your private audio, the Founder workstation or OBS; a second listener is needed to verify the audience experience.'};
  }
 }
 export function engineerPublicResponse(mode='menu'){

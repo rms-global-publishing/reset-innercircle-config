@@ -1,6 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
 import { randomUUID } from 'node:crypto';
 import { ENGINEER_OPTIONS, engineerMode, engineerPublicResponse } from './engineer.js';
+import {soundcheckMenu} from './soundcheck.js';
 
 export const commandBuilders = [
   new SlashCommandBuilder().setName('portal').setDescription('Open RMS GP CreatorHub and creator onboarding.'),
@@ -68,8 +69,8 @@ const makeSessionId = () => {
 
 export function buildCommandResponse(commandName,interaction) {
   switch (commandName) {
-    case 'engineer':return engineerPublicResponse(engineerMode(interaction));
-    case 'soundcheck':return engineerPublicResponse('menu');
+    case 'engineer':return engineerMode(interaction)==='soundcheck'?{...soundcheckMenu(interaction).data,ephemeral:true}:engineerPublicResponse(engineerMode(interaction));
+    case 'soundcheck':return {...soundcheckMenu(interaction).data,ephemeral:true};
     case 'portal':
       return { ephemeral: false, embeds: [baseEmbed('RMS GP CreatorHub™', `Enter the ownership-first creator infrastructure for onboarding, submissions, rights preparation, licensing readiness, marketplace activity, and professional creator tools.\n\n**CreatorHub:** ${creatorHubUrl()}\n**Reset Inner Circle:** ${resetUrl()}`)] };
     case 'submit':
@@ -119,7 +120,25 @@ export function buildCommandResponse(commandName,interaction) {
     case 'newthisweek':
       return { ephemeral: false, embeds: [baseEmbed('RMS GP Studio · New This Week', `Only rights-cleared, commercially cleared Studio assets are eligible for the New This Week feed. Internal masters and review-required material never surface here. The first cleared asset batch will populate the live feed without placeholder tracks or fake activity.\n\n${studioUrl()}`)] };
     case 'helpstudio':
-      return { ephemeral: true, embeds: [baseEmbed('RESET Studio Help', `**Create:** /studio · /startsession · /savesession · /exportstems\n**Engineer:** /engineer · /soundcheck\n**Services:** /studioservices · /requestmix · /licensing\n**Private routes:** /myprojects · /myaccess · /support\n**Rooms:** /stage · /game · Cloud Studio XR voice invite: ${studioInvite}\n**Command tip:** Use Main Arena text chat for CreatorHub slash commands when Studio voice chat does not display them.\n\nNever post unreleased masters, private contracts, splits, passwords, banking information or confidential CreatorHub records into public channels.`)] };
+      return {ephemeral:true,embeds:[baseEmbed('RESET INNER CIRCLE | Your Creator Campus Guide',
+        '**WELCOME!** Reset Inner Circle connects independent creators, gamers, performers, producers, educators and supporters. You do not need to purchase anything to join the public community.\n\n' +
+        '**1. Meet people and find the right room**\n' +
+        '<#1429398859020370096> Main Arena: introductions, general conversation, event questions and slash commands.\n' +
+        '<#1429398859020370100> Game Room: live watch parties, gameplay and creator events. Use /game and /events.\n' +
+        '<#1468103128279941272> RMS GP Cloud Studio XR: voice collaboration, podcasts, original beats, education and production. Use /studio, /engineer or /soundcheck.\n' +
+        '<#1435167634520932453> Claim Your Stage: creative performances and showcases; obtain host clearance when required.\n\n' +
+        '**2. Create, learn and own your work**\n' +
+        '/portal opens CreatorHub. /submit and /myprojects are for private creator work. /rights, /sync and /licensing explain catalog and sync readiness. /marketplace shows approved offerings. /missions introduces game/community activities. /studioservices and /requestmix show optional professional services.\n\n' +
+        '**3. Understand memberships and access**\n' +
+        '/membership shows optional tiers; /myaccess checks your authenticated access. A Discord invite alone does not buy a studio booking or unlock paid services.\n\n' +
+        '**4. Need help or have an audio problem?**\n' +
+        '/soundcheck asks what you can actually hear; /engineer provides targeted help. /support routes sensitive issues privately; /safety explains community standards. Carl-bot handles designated community moderation and recognition, not the Founder\'s workstation.\n\n' +
+        '**Tips:** Slash commands work in channels where apps are permitted. If the command picker does not show in voice chat, use Main Arena. Member help often appears only to you. No automated service listens to your microphone or guarantees audience hearing. Keep private masters, contracts, rights splits and financial details out of public chat.'
+      )],components:[{type:1,components:[
+        {type:2,style:5,label:'CreatorHub',url:creatorHubUrl()},
+        {type:2,style:5,label:'Membership options',url:resetUrl().replace(/\/$/,'')+'/membership'},
+        {type:2,style:5,label:'Private support',url:'https://creators.rmsglobalpublishing.com/creator/support'}
+      ]}]};
     case 'membership':
       return { ephemeral: true, content: 'Membership checkout is generated securely for your Discord identity.' };
     case 'support': {
