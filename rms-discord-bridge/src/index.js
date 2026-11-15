@@ -7,6 +7,7 @@ import {
 import { buildCommandResponse } from './commands.js';
 import {buildMembershipCommandResponse} from './membership.js';
 import {ASSISTANCE_COMMANDS,handleAssistance,assistanceFailure} from './assistance.js';
+import {engineerMode,engineerUsesAssistance} from './engineer.js';
 
 const token = process.env.DISCORD_TOKEN;
 const guildId = process.env.DISCORD_GUILD_ID;
@@ -49,15 +50,20 @@ client.on(Events.InteractionCreate, async (interaction) => {
   }
 
   try {
-    if(ASSISTANCE_COMMANDS.has(interaction.commandName)||String(interaction.customId||'').startsWith('ra1.')){
+    const mode=engineerMode(interaction);
+    const delegated=ASSISTANCE_COMMANDS.has(interaction.commandName)&&(interaction.commandName!=='engineer'||engineerUsesAssistance(interaction.commandName,mode));
+    if(interaction.isChatInputCommand()&&interaction.commandName==='engineer'&&mode==='readiness'&&!((interaction.memberPermissions?.bitfield||0n)&56n)){
+      await interaction.reply({content:'Host readiness is for authorized Studio staff only. Use /soundcheck for member help.',ephemeral:true});return;
+    }
+    if(delegated||String(interaction.customId||'').startsWith('ra1.')){
       const form=interaction.isModalSubmit()?[{components:[...interaction.fields.fields.values()].map(field=>({custom_id:field.customId,value:field.value}))}]:[];
-      const envelope={id:interaction.id,type:interaction.isChatInputCommand()?2:interaction.isModalSubmit()?5:3,guild_id:interaction.guildId,channel_id:interaction.channelId,member:{user:{id:interaction.user.id},permissions:interaction.memberPermissions?.bitfield.toString()||'0'},data:{name:interaction.commandName,custom_id:interaction.customId,components:form}};
+      const envelope={id:interaction.id,type:interaction.isChatInputCommand()?2:interaction.isModalSubmit()?5:3,guild_id:interaction.guildId,channel_id:interaction.channelId,member:{user:{id:interaction.user.id},permissions:interaction.memberPermissions?.bitfield.toString()||'0'},data:{name:interaction.commandName,custom_id:interaction.customId,options:interaction.isChatInputCommand()?interaction.options?.data||[]:[],components:form}};
       let answer;try{answer=await handleAssistance(envelope);}catch{answer=assistanceFailure();}
       if(answer?.type===9){await interaction.showModal(answer.data);return;}
       if(answer?.data){const {allowed_mentions,...data}=answer.data;await interaction.reply({...data,allowedMentions:{parse:[]}});return;}
     }
     if(!interaction.isChatInputCommand()){await interaction.reply({content:'Open /helpstudio for current controls.',flags:64});return;}
-    const response = interaction.commandName==='membership'?buildMembershipCommandResponse(interaction.user.id):buildCommandResponse(interaction.commandName);
+    const response = interaction.commandName==='membership'?buildMembershipCommandResponse(interaction.user.id):buildCommandResponse(interaction.commandName,interaction);
     await interaction.reply({
       ...response,
       allowedMentions: { parse: [] },

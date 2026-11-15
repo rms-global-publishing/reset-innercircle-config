@@ -1,8 +1,9 @@
 // Angelea McCullough, Founder of RMS Global Publishing.
 // Requested help only. No message-content listener, unsolicited posts, payments or rights writes.
 import {createHmac,timingSafeEqual} from 'node:crypto';
+import {engineerMode} from './engineer.js';
 const HOME='https://creators.rmsglobalpublishing.com';
-export const ASSISTANCE_COMMANDS=new Set(['portal','helpstudio','support','requestmix','studioservices','rights','sync','licensing','studio']);
+export const ASSISTANCE_COMMANDS=new Set(['portal','helpstudio','support','requestmix','studioservices','rights','sync','licensing','studio','engineer','soundcheck']);
 export const ACTIONS=new Set(['open','audio','music_only','all_silent','audio_retry','audio_confirm','audio_defer','publishing','scope','catalog','licensing','production','share','pause','resume','preflight','route_voice','route_stream','route_unknown','host_checks','audience_verified','route_changed','session_end','takeover','release']);
 const STAFF=new Set(['preflight','route_voice','route_stream','route_unknown','host_checks','audience_verified','route_changed','session_end','takeover','release']);
 const SESSION=new Set(['preflight','route_voice','route_stream','route_unknown','host_checks','audience_verified','route_changed','session_end']);
@@ -47,7 +48,7 @@ export function helpCopy(result){
  case 'peer_feedback_not_endorsement':return ['Creators discovering creators','Share your public portfolio in the relevant designated showcase channel. A feedback request is not a partnership, endorsement or license. Use private Support to request an RMS review; this control does not claim a website was reviewed or save the URL.'];
  case 'audience_check_required':return ['Verify the room before calling it ready','Set the actual audio route. Confirm host voice, music send, mix-minus/no doubling and recording disclosure, then confirm reception with a remote listener on that same route. Device or stream changes invalidate the check.'];
  case 'host_attested_ready':return ['Current-route audience test recorded','A host explicitly confirmed the checklist and remote listener reception within the last 30 minutes. This is a host attestation, not an automated measurement or a claim that every listener hears audio.'];
- default:return ['Welcome to Reset Inner Circle','Listen to the room, share your work, or explore music publishing and costs. One useful next step at a time. Your choice does not create a purchase, license, representation agreement or unsolicited reminder.'];
+ default:return ['Welcome to Reset Inner Circle','Listen to the room, share your work, or explore music publishing and costs. One useful next step at a time. Your choice does not create a purchase, license, representation agreement or unsolicited reminder. For Cloud Studio XR audio problems, use /engineer or /soundcheck in an authorized text channel.'];
  }
 }
 function callback(title,description,components=[]){return {type:4,data:{flags:64,allowed_mentions:{parse:[]},embeds:[{color:0xc8a24a,title,description,footer:{text:'RMS Global Publishing | Ownership first | Rowan assistance'}}],components}};}
@@ -73,7 +74,19 @@ export async function handleAssistance(i,{gateway,secret=process.env.RMS_MEMBERS
  const who=identity(i),op=isOperator(i),signal=AbortSignal.timeout(1900);
  const call=gateway||((event)=>assistanceGateway(event,signal));
  let action='open',expected=null,subject=who.member,facts={},session=false;
- if(i.type===2){const name=i.data?.name;if(!ASSISTANCE_COMMANDS.has(name))return null;action=['sync','licensing','rights'].includes(name)?'publishing':['requestmix','studioservices'].includes(name)?'scope':'open';}
+ if(i.type===2){const name=i.data?.name;if(!ASSISTANCE_COMMANDS.has(name))return null;
+  if(name==='soundcheck'){action='audio';}
+  else if(name==='engineer'){
+   const mode=engineerMode(i);
+   if(mode==='readiness'){
+    if(!op)throw Error('Staff authority is required for the studio readiness check.');
+    action='preflight';session=true;subject=who.channel;
+   }else if(['soundcheck','music','silent'].includes(mode)){
+    action='audio';
+    if(mode==='music')facts.symptom='music_only';
+    if(mode==='silent')facts.symptom='all_silent';
+   }else return null;
+  }else action=['sync','licensing','rights'].includes(name)?'publishing':['requestmix','studioservices'].includes(name)?'scope':'open';}
  else if([3,5].includes(i.type)){const control=verifyAction(i.data?.custom_id,who,secret,now);({action,subject}=control);expected=control.version;if(STAFF.has(action)&&!op)throw Error('Staff authority is required for that action.');session=SESSION.has(action);if(subject!==(session?who.channel:who.member))throw Error('Different member or room.');
   if(i.type===3&&action==='scope')return modal(signAction('scope',who.member,expected,who,secret,now),'Tell us about your collection','How many tracks? (1-500)','track_count','14');
   if(i.type===3&&['takeover','release'].includes(action))return modal(signAction(action,who.member,expected,who,secret,now),action==='takeover'?'Handle a member inquiry':'Return an inquiry to Rowan','Discord member ID (not their display name)','member_id','Member ID',22);

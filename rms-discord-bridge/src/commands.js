@@ -1,5 +1,6 @@
 import { SlashCommandBuilder } from 'discord.js';
 import { randomUUID } from 'node:crypto';
+import { ENGINEER_OPTIONS, engineerMode, engineerPublicResponse } from './engineer.js';
 
 export const commandBuilders = [
   new SlashCommandBuilder().setName('portal').setDescription('Open RMS GP CreatorHub and creator onboarding.'),
@@ -24,6 +25,9 @@ export const commandBuilders = [
   new SlashCommandBuilder().setName('licensing').setDescription('Open RMS GP licensing and rights-readiness guidance.'),
   new SlashCommandBuilder().setName('studioservices').setDescription('View RMS GP Studio services and starting rates.'),
   new SlashCommandBuilder().setName('helpstudio').setDescription('View RESET Studio commands and privacy-safe help.'),
+  new SlashCommandBuilder().setName('engineer').setDescription('RMS GP Sound Engineer: private Cloud Studio XR help.')
+    .addStringOption(option=>option.setName('issue').setDescription('Choose a sound, video, MPC or host check.').setRequired(false).addChoices(...ENGINEER_OPTIONS)),
+  new SlashCommandBuilder().setName('soundcheck').setDescription('Start a private guided Cloud Studio XR audio check.'),
   new SlashCommandBuilder().setName('membership').setDescription('Open your private RESET membership checkout options.'),
   new SlashCommandBuilder().setName('support').setDescription('Open the private RMS GP support route.'),
 ];
@@ -62,8 +66,10 @@ const makeSessionId = () => {
   return `RST-${date}-${rand}`;
 };
 
-export function buildCommandResponse(commandName) {
+export function buildCommandResponse(commandName,interaction) {
   switch (commandName) {
+    case 'engineer':return engineerPublicResponse(engineerMode(interaction));
+    case 'soundcheck':return engineerPublicResponse('menu');
     case 'portal':
       return { ephemeral: false, embeds: [baseEmbed('RMS GP CreatorHub™', `Enter the ownership-first creator infrastructure for onboarding, submissions, rights preparation, licensing readiness, marketplace activity, and professional creator tools.\n\n**CreatorHub:** ${creatorHubUrl()}\n**Reset Inner Circle:** ${resetUrl()}`)] };
     case 'submit':
@@ -113,7 +119,7 @@ export function buildCommandResponse(commandName) {
     case 'newthisweek':
       return { ephemeral: false, embeds: [baseEmbed('RMS GP Studio · New This Week', `Only rights-cleared, commercially cleared Studio assets are eligible for the New This Week feed. Internal masters and review-required material never surface here. The first cleared asset batch will populate the live feed without placeholder tracks or fake activity.\n\n${studioUrl()}`)] };
     case 'helpstudio':
-      return { ephemeral: true, embeds: [baseEmbed('RESET Studio Help', `**Create:** /studio · /startsession · /savesession · /exportstems\n**Services:** /studioservices · /requestmix · /licensing\n**Private routes:** /myprojects · /myaccess · /support\n**Rooms:** /stage · /game · Cloud Studio XR voice invite: ${studioInvite}\n**Command tip:** Use Main Arena text chat for CreatorHub slash commands when Studio voice chat does not display them.\n\nNever post unreleased masters, private contracts, splits, passwords, banking information or confidential CreatorHub records into public channels.`)] };
+      return { ephemeral: true, embeds: [baseEmbed('RESET Studio Help', `**Create:** /studio · /startsession · /savesession · /exportstems\n**Engineer:** /engineer · /soundcheck\n**Services:** /studioservices · /requestmix · /licensing\n**Private routes:** /myprojects · /myaccess · /support\n**Rooms:** /stage · /game · Cloud Studio XR voice invite: ${studioInvite}\n**Command tip:** Use Main Arena text chat for CreatorHub slash commands when Studio voice chat does not display them.\n\nNever post unreleased masters, private contracts, splits, passwords, banking information or confidential CreatorHub records into public channels.`)] };
     case 'membership':
       return { ephemeral: true, content: 'Membership checkout is generated securely for your Discord identity.' };
     case 'support': {

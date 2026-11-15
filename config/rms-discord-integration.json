@@ -219,6 +219,37 @@
         "all_picker_text_channels_excluded": 42
       },
       "native_bot_control_verified": false
+    },
+    "sound_engineer_command_candidate": {
+      "change_key": "RMSGP-CLOUD-STUDIO-ENGINEER-COMMANDS-20261114",
+      "status": "CODE_TESTED_NOT_REGISTERED_OR_DEPLOYED",
+      "command_owner": "RMS CreatorHub Discord Application",
+      "commands": [
+        "engineer",
+        "soundcheck"
+      ],
+      "primary_voice_room_id": "1468103128279941272",
+      "voice_room_name": "RMS GP Cloud Studio XR",
+      "fallback_text_channel_id": "1429398859020370096",
+      "member_modes": [
+        "menu",
+        "soundcheck",
+        "music",
+        "silent",
+        "echo",
+        "video",
+        "recording",
+        "mpc",
+        "request"
+      ],
+      "staff_only_mode": "readiness",
+      "runtime": "existing Vercel Discord bridge and signed member assistance gateway",
+      "assistance_behavior": "soundcheck/music/silent use existing stateful private audio gateway; staff readiness uses already authorized studio preflight; other categories show contextual guidance and secure support links",
+      "not_implemented": "Automatic invocation of the private ChatGPT Sound Engineer agent or control of OBS, Wave Link, recording, MPC, hardware and privileges",
+      "carl_scope": "Public discovery and links only; no duplicate slash commands, announcements, staffing permissions or privileged workstation access",
+      "no_spend": true,
+      "tests": "17 local Node tests PASS prior to candidate final updates; rerun required",
+      "production": "HOLD until CI, Discord command registration provider readback, member/staff QA and Founder release authorization"
     }
   },
   "automation_ownership": {
