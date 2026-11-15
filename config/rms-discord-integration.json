@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.10.2",
+  "schema_version": "1.11.0",
   "status": "active",
   "owner": "Angelea McCullough, Founder of RMS Global Publishing",
   "system": "RMS Fully Automated Intelligence System",
@@ -282,6 +282,18 @@
     "statbot": [
       "community analytics",
       "server health reporting"
+    ],
+    "receptionist": [
+      "Existing CreatorHub authenticated help, licensing and studio production intake",
+      "private case correlation, acknowledgement, ownership and follow-up",
+      "route verified technical sound, video, OBS, Wave Link, Stream Deck, HD60 X, Facecam and MPC issues to authorized Sound Engineer",
+      "retain case ownership during technical escalation; obtain member/host confirmation before closure",
+      "escalate payments, access, rights, contracts, licensability and irreversible actions to authorized owners, never Sound Engineer"
+    ],
+    "rms_gp_sound_engineer": [
+      "internal Founder-controlled broadcast QA and recovery across OBS, Wave Link, Wave:3, Stream Deck, HD60 X, Facecam, Discord audio and MPC",
+      "diagnose only under authorized workstation access; independent signal, recording and listener readback",
+      "return private sanitized technical findings to Receptionist without taking over membership, billing or customer contact"
     ]
   },
   "now_playing": {
@@ -550,6 +562,68 @@
       "no_authority_rewards": true,
       "recognition_runtime_certified": false,
       "future_channel_coverage_requires_recheck": true
+    },
+    "sound_engineer_triage": {
+      "change_key": "RMSGP-INNERCIRCLE-SOUND-ENGINEER-HANDOFF-20261114",
+      "state": "CONTRACT_PREPARED_PROVIDER_HANDOFF_NOT_TESTED",
+      "intake_owner": "RMS GP Receptionist via existing authenticated CreatorHub assistance and /support",
+      "discord_discovery_owner": "Carl-bot guidance and RMS CreatorHub /helpstudio and /support commands",
+      "technical_owner": "private RMS GP Sound Engineer, Founder-authorized workstation only",
+      "member_instructions": "Check expected Discord voice or Go Live tile and device volume; then use existing /helpstudio or /support for unresolved issues.",
+      "issue_types": [
+        "no_voice_audio",
+        "no_game_audio",
+        "no_music_audio",
+        "echo_or_feedback",
+        "video_black_or_no_signal",
+        "mic_or_camera_quality",
+        "studio_session_technical_failure",
+        "MPC_or_recording_issue"
+      ],
+      "handoff_fields": [
+        "case_reference",
+        "issue_type",
+        "affected_public_room_or_route",
+        "observed_symptom",
+        "requested_check",
+        "consent_to_record_or_test",
+        "utc_timestamp"
+      ],
+      "return_fields": [
+        "case_reference",
+        "verified_diagnosis",
+        "safe_action_taken",
+        "test_method",
+        "remaining_blocker",
+        "next_owner",
+        "member_confirmation_pending"
+      ],
+      "rules": [
+        "Use existing case IDs and provider-backed records; no duplicate ticket.",
+        "Never post private messages, email, financial records, personal data, DAW projects, recording content or secrets in public Discord.",
+        "Do not give Carl or Receptionist OBS credentials, privileged workstation access or autonomous production controls.",
+        "Sound Engineer cannot change membership/payment/rights, start a public stream or issue a paid gift.",
+        "Only Receptionist closes member-facing cases after customer/host confirmation; the engineer reports technical readiness, not service delivery.",
+        "Only one event reminder owner; do not create new Carl tags, auto-feeds, roles or slash commands until authenticated provider settings are checked."
+      ],
+      "verification_gates": [
+        "Carl dashboard content+permission readback",
+        "RMS CreatorHub /helpstudio and /support real user test",
+        "Receptionist intake-to-engineer case linkage",
+        "Engineer evidence and redacted response",
+        "Receptionist case closure with member confirmation",
+        "Second-device audio and video listener acceptance"
+      ],
+      "production_ready": false,
+      "receptionist_monitoring": {
+        "provider": "ChatGPT existing RMS GP Receptionist task automations",
+        "verified_date": "2026-11-14",
+        "daily_report": "existing instructions appended with Sound Engineer technical handoff; enabled/readback verified; next execution not yet verified",
+        "priority_watch": "existing instructions appended with urgent hosted-event technical triage; enabled/readback verified; next execution not yet verified",
+        "delivery_and_case_dispatch": "NOT_VERIFIED",
+        "no_new_automation": true,
+        "original_schedules_preserved": true
+      }
     }
   },
   "ecosystem_alignment": {
