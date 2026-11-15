@@ -73,8 +73,10 @@ test('existing slash commands route to live beta and Main Arena without publishi
  assert.equal(integration.signal_city_arena_20261102.mission_reward_grant,false);
  assert.ok(commandData.some(c=>c.name==='events')&&commandData.some(c=>c.name==='missions')&&commandData.some(c=>c.name==='game'));
  const registered=integration.discord.discovery.commands_registered;
- assert.equal(registered.length,24,'preserve the verified existing command set');
+ assert.equal(registered.length,26,'the Discord provider confirmed 26 registered commands');
+ assert.equal(new Set(registered).size,26,'registered command names are distinct');
+ assert.deepEqual(registered.slice(-2),['engineer','soundcheck'],'only two Sound Engineer commands were added to the original 24');
  assert.ok(registered.every(name=>commandData.some(c=>c.name===name)),'do not remove any existing member command');
- assert.deepEqual(commandData.map(c=>c.name).filter(name=>!registered.includes(name)).sort(),['engineer','soundcheck'],'only the two Founder-approved Sound Engineer commands are added');
- assert.equal(integration.discord.sound_engineer_command_candidate.status,'CODE_TESTED_NOT_REGISTERED_OR_DEPLOYED','candidate must not falsely claim Discord registration');
+ assert.deepEqual(commandData.map(c=>c.name).sort(),[...registered].sort(),'runtime source retains all 26 registered command names');
+ assert.equal(integration.discord.sound_engineer_command_candidate.status,'PROVIDER_REGISTERED_26_PRODUCTION_LIVE_MEMBER_ACCEPTANCE_PENDING','provider registration and audience acceptance must be reported separately');
 });
