@@ -10,11 +10,12 @@
   "scripts": {
     "start": "node src/index.js",
     "register:commands": "node src/register-commands.js",
-    "check": "node --check src/index.js && node --check src/register-commands.js && node --check src/commands.js && node --check src/membership.js && node --check api/interactions.js && node --check api/health.js && node --check api/membership-bootstrap.js && node --check api/membership-webhook.js && node --check api/membership-status.js && node --check src/assistance.js && node --check src/engineer.js",
+    "check": "node --check src/index.js && node --check src/register-commands.js && node --check src/commands.js && node --check src/membership.js && node --check api/interactions.js && node --check api/health.js && node --check api/membership-bootstrap.js && node --check api/membership-webhook.js && node --check api/membership-status.js && node --check src/assistance.js && node --check src/engineer.js && node --check src/soundcheck.js && node --check src/discord-deferred.js",
     "vercel-build": "npm run check",
     "test:assistance": "node --test tests/*.test.mjs"
   },
   "dependencies": {
+    "@vercel/functions": "3.11.3",
     "discord-interactions": "4.4.0",
     "discord.js": "14.27.0"
   }

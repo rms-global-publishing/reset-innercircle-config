@@ -2,6 +2,7 @@
 // Requested help only. No message-content listener, unsolicited posts, payments or rights writes.
 import {createHmac,timingSafeEqual} from 'node:crypto';
 import {engineerMode} from './engineer.js';
+import {isSoundcheckControl,soundcheckIdentity,verifySoundChoice} from './soundcheck.js';
 const HOME='https://creators.rmsglobalpublishing.com';
 export const ASSISTANCE_COMMANDS=new Set(['portal','helpstudio','support','requestmix','studioservices','rights','sync','licensing','studio','engineer','soundcheck']);
 export const ACTIONS=new Set(['open','audio','music_only','all_silent','audio_retry','audio_confirm','audio_defer','publishing','scope','catalog','licensing','production','share','pause','resume','preflight','route_voice','route_stream','route_unknown','host_checks','audience_verified','route_changed','session_end','takeover','release']);
@@ -71,7 +72,7 @@ function actionMenu(r,i,secret,session=false){
  return rows;
 }
 export async function handleAssistance(i,{gateway,secret=process.env.RMS_MEMBERSHIP_SIGNING_SECRET,now=Date.now()}={}){
- const who=identity(i),op=isOperator(i),signal=AbortSignal.timeout(1900);
+ const who=identity(i),op=isOperator(i),signal=AbortSignal.timeout(15500);
  const call=gateway||((event)=>assistanceGateway(event,signal));
  let action='open',expected=null,subject=who.member,facts={},session=false;
  if(i.type===2){const name=i.data?.name;if(!ASSISTANCE_COMMANDS.has(name))return null;
@@ -87,7 +88,19 @@ export async function handleAssistance(i,{gateway,secret=process.env.RMS_MEMBERS
     if(mode==='silent')facts.symptom='all_silent';
    }else return null;
   }else action=['sync','licensing','rights'].includes(name)?'publishing':['requestmix','studioservices'].includes(name)?'scope':'open';}
- else if([3,5].includes(i.type)){const control=verifyAction(i.data?.custom_id,who,secret,now);({action,subject}=control);expected=control.version;if(STAFF.has(action)&&!op)throw Error('Staff authority is required for that action.');session=SESSION.has(action);if(subject!==(session?who.channel:who.member))throw Error('Different member or room.');
+ else if([3,5].includes(i.type)){
+  if(isSoundcheckControl(i)){
+   const choice=verifySoundChoice(i.data?.custom_id,soundcheckIdentity(i),secret,now);
+   if(choice==='echo')throw Error('Echo help is available directly from the menu');
+   action=choice==='heard'?'audio_confirm':'audio';
+   facts=choice==='heard'?{confirmed:true}:{symptom:choice==='voice'?'music_only':'all_silent'};
+   subject=who.member;expected=null;
+  }else{
+   const control=verifyAction(i.data?.custom_id,who,secret,now);({action,subject}=control);expected=control.version;
+   if(STAFF.has(action)&&!op)throw Error('Staff authority is required for that action.');
+   session=SESSION.has(action);
+   if(subject!==(session?who.channel:who.member))throw Error('Different member or room.');
+  }
   if(i.type===3&&action==='scope')return modal(signAction('scope',who.member,expected,who,secret,now),'Tell us about your collection','How many tracks? (1-500)','track_count','14');
   if(i.type===3&&['takeover','release'].includes(action))return modal(signAction(action,who.member,expected,who,secret,now),action==='takeover'?'Handle a member inquiry':'Return an inquiry to Rowan','Discord member ID (not their display name)','member_id','Member ID',22);
   if(i.type===5&&action==='scope'){const raw=inputValue(i,'track_count');if(!/^\d{1,3}$/.test(raw)||+raw<1||+raw>500)throw Error('Use a whole track count from 1 to 500.');facts.track_count=+raw;}
@@ -104,7 +117,7 @@ export async function handleAssistance(i,{gateway,secret=process.env.RMS_MEMBERS
  if(['takeover','release'].includes(action))return callback(action==='takeover'?'Human handling recorded':'Human handling released','The targeted inquiry was updated. Unresolved audio and the member\'s own pause preference are preserved. No message was sent to that member.');
  // Recheck immediately before constructing the reply; a human claim/pause invalidates stale suggestions.
  const latest=await call({...event,action:'read',facts:{},expected:null});if(!latest?.ok)throw Error('Could not confirm current help state.');
- const changed=latest.state?.version!==r.state?.version;const current={...r,state:latest.state,session_readiness:latest.session_readiness,...(changed?{code:'STATE_CHANGED',route:'/creator/assistance'}:{})};const [title,copy]=helpCopy(current);return callback(session?'Sound Stage readiness':title,session?copy+'\n\nRoute: '+(latest.state?.route||'unknown')+'. Before confirming: check voice, music send, mix-minus/no doubling, recording disclosure and a remote listener. A confirmation applies only to the displayed saved route.':copy,actionMenu(current,i,secret,session));
+ const changed=latest.state?.version!==r.state?.version;const current={...r,state:latest.state,session_readiness:latest.session_readiness,...(changed?{code:'STATE_CHANGED',route:'/creator/assistance'}:{})};const [title,copy]=action==='audio_confirm'?['You confirmed you can hear the audio','Your own listening confirmation is recorded in the private assistance state. This is **listener-reported reception**, not an automated signal measurement or proof for every attendee. Thank you for checking.']:helpCopy(current);return callback(session?'Sound Stage readiness':title,session?copy+'\n\nRoute: '+(latest.state?.route||'unknown')+'. Before confirming: check voice, music send, mix-minus/no doubling, recording disclosure and a remote listener. A confirmation applies only to the displayed saved route.':copy,actionMenu(current,i,secret,session));
 }
 export async function assistanceGateway(event,signal){
  const base=(process.env.RMS_CREATORHUB_SUPABASE_URL||'').replace(/\/$/,'');const secret=process.env.RMS_MEMBERSHIP_SIGNING_SECRET||'';

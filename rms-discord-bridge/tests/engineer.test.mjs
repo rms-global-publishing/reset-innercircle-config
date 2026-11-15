@@ -33,9 +33,9 @@ test('only supported private modes enter existing assistance; other modes remain
  assert.equal(engineerMode(event('engineer','music')),'music');
  assert.equal(engineerMode(event('engineer','invalid')),'menu');
  assert.equal(engineerMode(event('engineer')),'menu');
- for(const mode of ['soundcheck','music','silent','readiness'])assert.equal(engineerUsesAssistance('engineer',mode),true);
- for(const mode of ['menu','echo','video','recording','mpc'])assert.equal(engineerUsesAssistance('engineer',mode),false);
- assert.equal(engineerUsesAssistance('soundcheck','menu'),true);
+ for(const mode of ['music','silent','readiness'])assert.equal(engineerUsesAssistance('engineer',mode),true);
+ for(const mode of ['soundcheck','menu','echo','video','recording','mpc'])assert.equal(engineerUsesAssistance('engineer',mode),false);
+ assert.equal(engineerUsesAssistance('soundcheck','menu'),false);
 });
 test('member audio symptoms are persisted through existing private gateway with actor binding',async()=>{
  for(const [name,mode,symptom] of [['soundcheck',undefined,undefined],['engineer','soundcheck',undefined],['engineer','music','music_only'],['engineer','silent','all_silent']]){
@@ -61,7 +61,7 @@ test('host readiness cannot be called by members; staff uses existing versioned 
  assert.ok(r.data.components.flatMap(x=>x.components).some(b=>b.label==='Listener confirmed'));
 });
 
-import handler from '../api/interactions.js';
+import {createHandler} from '../api/interactions.js';
 import {Readable} from 'node:stream';
 import {generateKeyPairSync,sign} from 'node:crypto';
 test('signed Discord gateway handles engineering menu, audio help and rejects unauthorized staff check',async()=>{
@@ -73,7 +73,8 @@ test('signed Discord gateway handles engineering menu, audio help and rejects un
  process.env.DISCORD_CLIENT_ID='1540169303213609023';
  process.env.RMS_MEMBERSHIP_SIGNING_SECRET='test-secret';
  process.env.RMS_CREATORHUB_SUPABASE_URL='https://fixture.supabase.co';
- let forwarded=0;
+ let forwarded=0;const scheduled=[],edited=[];
+ const handler=createHandler({schedule:task=>{scheduled.push(task)},edit:async (interaction,response)=>{edited.push({interaction,response})}});
  globalThis.fetch=async()=>{forwarded++;return Response.json({ok:true,state,decision:'audio_help',session_readiness:{route:'voice_mix'}})};
  const send=async payload=>{
   const body=JSON.stringify({...payload,application_id:process.env.DISCORD_CLIENT_ID});
@@ -97,12 +98,17 @@ test('signed Discord gateway handles engineering menu, audio help and rejects un
   assert.match(staff.data.content,/authorized Studio staff only/);
   assert.equal(forwarded,0);
   const audio=await send(event('engineer','music'));
+  assert.equal(audio.type,5);
   assert.equal(audio.data.flags,64);
-  assert.ok(audio.data.components.length>0);
+  await Promise.all(scheduled);
+  assert.equal(edited.length,1);
+  assert.equal(edited[0].response.type,4);
   assert.equal(forwarded,2);
   const simple=await send(event('soundcheck'));
+  assert.equal(simple.type,4);
   assert.equal(simple.data.flags,64);
-  assert.equal(forwarded,4);
+  assert.match(simple.data.embeds[0].description,/What can YOU hear|Voice \+ music|listener/i);
+  assert.equal(forwarded,2);
  }finally{
   globalThis.fetch=orig;
   for(const k of Object.keys(process.env))if(!(k in old))delete process.env[k];
