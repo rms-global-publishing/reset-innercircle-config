@@ -60,7 +60,9 @@
         "studioservices",
         "helpstudio",
         "support",
-        "membership"
+        "membership",
+        "engineer",
+        "soundcheck"
       ],
       "status_note": "If Discovery Status remains yellow after commands are registered and executable, do not broaden permissions or enable Message Content solely to satisfy the badge; allow Discord metadata to reconcile and verify Discovery Settings independently."
     },
@@ -222,7 +224,7 @@
     },
     "sound_engineer_command_candidate": {
       "change_key": "RMSGP-CLOUD-STUDIO-ENGINEER-COMMANDS-20261114",
-      "status": "CODE_TESTED_NOT_REGISTERED_OR_DEPLOYED",
+      "status": "PROVIDER_REGISTERED_26_PRODUCTION_LIVE_MEMBER_ACCEPTANCE_PENDING",
       "command_owner": "RMS CreatorHub Discord Application",
       "commands": [
         "engineer",
@@ -249,7 +251,23 @@
       "carl_scope": "Public discovery and links only; no duplicate slash commands, announcements, staffing permissions or privileged workstation access",
       "no_spend": true,
       "tests": "17 local Node tests PASS prior to candidate final updates; rerun required",
-      "production": "HOLD until CI, Discord command registration provider readback, member/staff QA and Founder release authorization"
+      "production": "HOLD until CI, Discord command registration provider readback, member/staff QA and Founder release authorization",
+      "registration_evidence": "Vercel production build authenticated Discord REST registration returned Registered 26 guild commands; no independent post-registration Discord REST GET",
+      "registered_app_commands": 26,
+      "registration_release_sha": "6077b1c2bf75aa531adf20560ccc0c9641d13025",
+      "registration_deployment": "dpl_6CSSRjbLcZiN1EqxfrvtvaK41wiA",
+      "current_production_sha": "eecb5ccd828b689ccc58a868cb36ec97f0ba2e90",
+      "current_production_deployment": "dpl_DceSxeHPoaoBQaJs1hh8bbJqtYxF",
+      "registration_hook_removed": true,
+      "cleanup_pr": 44,
+      "audio_routing": "Discord input switched to Elgato Virtual Audio (Discord Channel); Discord output stayed Elgato Virtual Audio (Discord)",
+      "audio_probe": "Dedicated Discord virtual bus non-silent mean -23.5 dBFS, peak -14.6 dBFS after routing; independent audience listener not verified",
+      "observed_live_broadcast": "OBS Streaming, Recording and Virtual Camera active on last live OBS WebSocket readback; no public stream controlled by bot work",
+      "pending_acceptance": [
+        "Non-staff and staff Discord slash-command picker and real authenticated interaction smoke",
+        "Second authenticated Game Room viewer hears music and speech without echo",
+        "Receptionist and Sound Engineer private runtime handoff and Carl guidance readback"
+      ]
     }
   },
   "automation_ownership": {
