@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node src/index.js",
     "register:commands": "node src/register-commands.js",
-    "check": "node --check src/index.js && node --check src/register-commands.js && node --check src/commands.js && node --check src/membership.js && node --check api/interactions.js && node --check api/health.js && node --check api/membership-bootstrap.js && node --check api/membership-webhook.js && node --check api/membership-status.js && node --check src/assistance.js",
+    "check": "node --check src/index.js && node --check src/register-commands.js && node --check src/commands.js && node --check src/membership.js && node --check api/interactions.js && node --check api/health.js && node --check api/membership-bootstrap.js && node --check api/membership-webhook.js && node --check api/membership-status.js && node --check src/assistance.js && node --check src/engineer.js",
     "vercel-build": "npm run check",
     "test:assistance": "node --test tests/assistance.test.mjs"
   },

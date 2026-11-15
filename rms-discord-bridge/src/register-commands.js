@@ -25,6 +25,11 @@ const normalized = (commands) => commands
 try {
   const route = Routes.applicationGuildCommands(clientId, guildId);
   const existing = await rest.get(route);
+  if (!Array.isArray(existing)) throw Error('Discord guild command readback unavailable; no registration attempted.');
+  if (clientId !== '1540169303213609023' || guildId !== '1429398855681573038') throw Error('Unexpected Discord application or guild; registration blocked.');
+  const candidateNames = new Set(commandData.map((command) => command.name));
+  const missing = existing.filter((command) => !candidateNames.has(command.name));
+  if (missing.length) throw Error('Registration would remove existing commands: ' + missing.map((command) => command.name).join(', '));
   if (JSON.stringify(normalized(existing)) === JSON.stringify(normalized(commandData))) {
     console.log(`${commandData.length} RMS guild commands are already current; no Discord write needed.`);
     process.exit(0);

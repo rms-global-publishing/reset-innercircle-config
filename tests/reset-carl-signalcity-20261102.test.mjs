@@ -72,5 +72,9 @@ test('existing slash commands route to live beta and Main Arena without publishi
  assert.deepEqual(integration.signal_city_arena_20261102.slash_commands_to_improve,['events','missions','game']);
  assert.equal(integration.signal_city_arena_20261102.mission_reward_grant,false);
  assert.ok(commandData.some(c=>c.name==='events')&&commandData.some(c=>c.name==='missions')&&commandData.some(c=>c.name==='game'));
- assert.equal(commandData.length,24,'preserve all previously installed command names and avoid unnecessary guild registration');
+ const registered=integration.discord.discovery.commands_registered;
+ assert.equal(registered.length,24,'preserve the verified existing command set');
+ assert.ok(registered.every(name=>commandData.some(c=>c.name===name)),'do not remove any existing member command');
+ assert.deepEqual(commandData.map(c=>c.name).filter(name=>!registered.includes(name)).sort(),['engineer','soundcheck'],'only the two Founder-approved Sound Engineer commands are added');
+ assert.equal(integration.discord.sound_engineer_command_candidate.status,'CODE_TESTED_NOT_REGISTERED_OR_DEPLOYED','candidate must not falsely claim Discord registration');
 });
