@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.3.2",
+  "schema_version": "1.4.0",
   "status": "scoped_premium_verified_main_arena_sticky_live_security_and_event_e2e_pending",
   "owner": "Angelea McCullough, Founder of RMS Global Publishing",
   "system": "Reset Inner Circle / Carl-bot Premium Automation",
@@ -975,5 +975,57 @@
     "catalog_licenses_or_paid_access_grant": false,
     "extra_cost": false,
     "status": "ACTIVE_WITH_SAFE_SCOPE_VERIFIED_FURTHER_CERTIFICATION_REQUIRED"
+  },
+  "sound_engineer_handoff": {
+    "change_key": "RMSGP-INNERCIRCLE-SOUND-ENGINEER-HANDOFF-20261114",
+    "status": "PREPARED_NOT_APPLIED_IN_CARL_DASHBOARD",
+    "founder_agent": "RMS GP Sound Engineer (private ChatGPT agent)",
+    "scope": "Game Room, RESET Sound Stage, Cloud Studio XR and authorized RMS Global Publishing events",
+    "current_premium_guild_activation": "VERIFIED_ACTIVE_2026-11-02",
+    "purpose": "Carl performs simple public guidance and routes unresolved host or participant audio/video issues to existing RMS CreatorHub help without attempting engineering itself",
+    "reuse_only": {
+      "current_discord_commands": [
+        "/helpstudio",
+        "/support"
+      ],
+      "command_owner": "RMS CreatorHub Discord App; these are NOT Carl commands",
+      "existing_carl_surfaces": [
+        "sticky messages",
+        "existing routing tags",
+        "existing low-noise triggers"
+      ],
+      "fallback": "resetinnercircle.com/helpstudio and existing private CreatorHub assistance"
+    },
+    "draft_public_copy": "Having audio or video trouble? First check the intended Watch Stream tile or voice-room output, volume and mute. Still stuck? Run /helpstudio or /support from RMS CreatorHub or visit https://resetinnercircle.com/helpstudio. The RMS GP Sound Engineer supports the host behind the scenes; no public remote workstation access.",
+    "prohibitions": [
+      "Do not register /helpstudio or /support under Carl.",
+      "Do not create duplicate stickies/announcements, auto-purge support history or notify @everyone.",
+      "Do not request Discord passwords, payment details, unreleased music or private contracts.",
+      "Do not grant authority, paid membership or privileged roles based on a voice room or a help request.",
+      "Do not allow Carl to switch OBS scenes, unmute a broadcast, launch MPC, start recordings or start/end streaming."
+    ],
+    "channel_targets": [
+      {
+        "channel_id": "1429398859020370100",
+        "label": "Game Room",
+        "desired_action": "one existing event-guide mention or staff-approved revised sticky; avoid duplicate November 20 announcement",
+        "provider_readback": "PENDING"
+      },
+      {
+        "channel_id": "1431964592421998684",
+        "label": "RESET Sound Stage",
+        "desired_action": "route unresolved listener issues through existing help command and Receptionist",
+        "provider_readback": "PENDING"
+      }
+    ],
+    "required_proof": [
+      "authenticated Carl dashboard state",
+      "public member sees the guidance and working CreatorHub /helpstudio route",
+      "private case remains restricted",
+      "no bot duplicate announcements",
+      "readback after any actual Carl write"
+    ],
+    "no_premium_purchase": true,
+    "live_config_modified": false
   }
 }

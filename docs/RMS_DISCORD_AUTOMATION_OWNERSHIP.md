@@ -19,8 +19,39 @@ Reset Inner Circle Discord is the live community and activation node of the RMS 
 | Ticket Tool | Private support and escalation |
 | VoiceMaster | Temporary-room fallback during Carl migration; retire if Carl temporary rooms pass verification |
 | Statbot | Community analytics and server-health reporting |
+| RMS GP Receptionist | Existing authenticated CreatorHub assistance intake, private cases, customer communication, technical escalation and verified closure |
+| RMS GP Sound Engineer | Internal, Founder-authorized OBS, Wave Link, Wave:3, Stream Deck, Discord broadcast, camera/capture and MPC diagnostics; no member billing or permission authority |
 
 No two systems should own the same routine notification. Routine `@everyone` pings are prohibited.
+
+## RMS GP Sound Engineer ↔ Carl ↔ Receptionist — 2026-11-14
+
+**Change key:** `RMSGP-INNERCIRCLE-SOUND-ENGINEER-HANDOFF-20261114`
+
+**Implementation state:** The cross-system contract is staged in repository configuration, **not yet applied or live-tested in Carl's authenticated dashboard or the Receptionist runtime**. This section does not grant privileges to either system. Keep the existing production deployment intact until applicable acceptance gates pass and the Founder authorizes release.
+
+1. **Carl: public self-help and discovery only.** In the existing Game Room, Sound Stage and approved help surfaces, reuse current sticky/tag guidance rather than creating a second message or slash command. Prompt members to check the correct Discord Go Live watch tile, output device, stream volume and voice/monitoring status. For unresolved issues, send them to **RMS CreatorHub** `/helpstudio` or `/support` and the existing `https://resetinnercircle.com/helpstudio` page. These commands belong to the CreatorHub Discord App, **not Carl**.
+2. **Receptionist: one private case owner.** Preserve the existing authenticated CreatorHub assistance route and case ID. Distinguish urgent active-event sound/video incidents from membership, billing, publishing, licensing and private project concerns. A technical case is escalated internally to the Sound Engineer with only the case reference, public room/route, symptom, UTC time, requested check and explicit testing/recording consent when relevant. Never post confidential creator data or private chat transcripts to public Discord.
+3. **Sound Engineer: internal specialist.** Use already-authorized workstation access to verify the *actual* OBS scene, Wave Link routing, microphone, HD60 X signal, Facecam image, Discord audience sound and MPC input as applicable. Report diagnostic evidence, whether an authorized reversible correction was performed, exact tests, blockers and next owner under the same case ID. The engineer must not automatically start/end a broadcast, create paid entitlements, change permissions, promise paid gifts or handle licensing approvals.
+4. **Receptionist: complete the member-facing loop.** Receive the technical findings, communicate an accurate status privately, request viewer/host confirmation of restored audio or video, and only then close the support case. Escalate unresolved, high-risk or Founder-approval issues to the proper owner. Never mark resolved based solely on a configured audio route or bot response.
+
+**Emergency route:** A public report of severe feedback, unexpected private audio or no audience sound can produce one private staff alert through the *existing* alert/case mechanism. An alert is not permission for Carl or the Receptionist to manipulate the broadcast. Staff activate the internal Sound Engineer or follow the approved manual safe recovery procedure. Avoid repeat public pings.
+
+**No-overlap rule:** Carl owns existing public guidance, RMS CreatorHub App owns `/helpstudio` and `/support`, Receptionist owns case intake and follow-up, and Sound Engineer owns technical engineering readback. Keep billing, membership, rights, private customer data and public announcements with their existing authoritative owners.
+
+**Required acceptance:** Carl Premium authenticated saved-settings readback; actual CreatorHub command response as an ordinary member; authenticated private Receptionist case receipt; redacted handoff to Sound Engineer; technical evidence return with the *same* case reference; Receptionist readback and viewer confirmation; no duplicate notices, unapproved permissions or new spend. If these cannot be independently demonstrated, label the handoff **PREPARED / NOT LIVE CERTIFIED**.
+
+## Receptionist operating-script alignment — 2026-11-23
+
+The Founder-supplied operating script is a *design proposal*, not production authority. Adopt its single-case ownership, verified provider IDs, rights separation, minimum necessary technical escalation, and accurate status labels. Preserve existing CreatorHub support and Discord providers.
+
+- **No raw Discord forwarding.** Carl remains limited to public navigation and existing CreatorHub command links. Do not forward a member's message, transcript, attachments, or private profile to the Receptionist. The authorized CreatorHub assistance route receives authenticated, minimum-necessary form fields and retains one private ticket/case reference.
+- **No fictitious dispatch.** A linked CreatorHub ticket is not a Sound Engineer handoff. Do not set `SE_ESCALATED`, `SE_RESPONDED`, or `RESOLVED` until provider-backed dispatch, matching case-ID technical readback, and member/tester acceptance exist.
+- **Consent gates.** Technical file/audio access, recording, test capture and workstation control require existing recorded authorization for that specific activity. A generic creator upload or Discord interaction does not confer consent.
+- **Member-facing messages.** Use existing private /helpstudio or /support responses; no new Carl command, unsolicited public message, automatic licensing qualification email or invented response deadline.
+- **No silent closure.** Leave unresolved cases open, even after a period of inactivity; implement an approved no-response policy only after independent notice/delivery and escalation acceptance.
+- **Academy and SIGNAL CITY™.** Any future handoff shares only public learning category or voluntary discovery URL. No private masters, rights splits, payment state, access privileges or in-game credentials cross systems.
+- **Live acceptance gates.** Authenticated ordinary member submission, single private case ID, authorized sanitized dispatch, engineer acknowledgment and diagnostic evidence, second-device listener verification, member confirmation and production readback. Until all are demonstrated, `BLOCKED_NOT_DISPATCHED` is the authoritative handoff state.
 
 ## Carl-bot Premium operating standard — 2026-10-01
 
