@@ -41,6 +41,18 @@ No two systems should own the same routine notification. Routine `@everyone` pin
 
 **Required acceptance:** Carl Premium authenticated saved-settings readback; actual CreatorHub command response as an ordinary member; authenticated private Receptionist case receipt; redacted handoff to Sound Engineer; technical evidence return with the *same* case reference; Receptionist readback and viewer confirmation; no duplicate notices, unapproved permissions or new spend. If these cannot be independently demonstrated, label the handoff **PREPARED / NOT LIVE CERTIFIED**.
 
+## Receptionist operating-script alignment — 2026-11-23
+
+The Founder-supplied operating script is a *design proposal*, not production authority. Adopt its single-case ownership, verified provider IDs, rights separation, minimum necessary technical escalation, and accurate status labels. Preserve existing CreatorHub support and Discord providers.
+
+- **No raw Discord forwarding.** Carl remains limited to public navigation and existing CreatorHub command links. Do not forward a member's message, transcript, attachments, or private profile to the Receptionist. The authorized CreatorHub assistance route receives authenticated, minimum-necessary form fields and retains one private ticket/case reference.
+- **No fictitious dispatch.** A linked CreatorHub ticket is not a Sound Engineer handoff. Do not set `SE_ESCALATED`, `SE_RESPONDED`, or `RESOLVED` until provider-backed dispatch, matching case-ID technical readback, and member/tester acceptance exist.
+- **Consent gates.** Technical file/audio access, recording, test capture and workstation control require existing recorded authorization for that specific activity. A generic creator upload or Discord interaction does not confer consent.
+- **Member-facing messages.** Use existing private /helpstudio or /support responses; no new Carl command, unsolicited public message, automatic licensing qualification email or invented response deadline.
+- **No silent closure.** Leave unresolved cases open, even after a period of inactivity; implement an approved no-response policy only after independent notice/delivery and escalation acceptance.
+- **Academy and SIGNAL CITY™.** Any future handoff shares only public learning category or voluntary discovery URL. No private masters, rights splits, payment state, access privileges or in-game credentials cross systems.
+- **Live acceptance gates.** Authenticated ordinary member submission, single private case ID, authorized sanitized dispatch, engineer acknowledgment and diagnostic evidence, second-device listener verification, member confirmation and production readback. Until all are demonstrated, `BLOCKED_NOT_DISPATCHED` is the authoritative handoff state.
+
 ## Carl-bot Premium operating standard — 2026-10-01
 
 Founder reported the Carl-bot subscription renewed for Reset Inner Circle. The latest dashboard screenshot still displayed **“Carlbot Premium — Not active”**, so the first live gate is to confirm the renewed Premium slot is actually attached to guild `1429398855681573038`. The desired state is version-controlled in `config/carl-premium-automation.json`.
